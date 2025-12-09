@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Blåbær – barn</title>
-    <link rel="stylesheet" href="base.css" />
-    <link rel="stylesheet" href="staff_children.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/staff_children.css" />
+    <script src="js/scripts.js"></script>
   </head>
   <body>
     <div class="app-shell">
@@ -19,6 +20,16 @@
         </header>
 
         <main class="card-body">
+
+          <div class="logout-bar">
+  <button
+    class="btn btn-secondary btn-small"
+    onclick="window.location.href='landing.html';"
+  >
+    Logg ut
+  </button>
+</div>
+
           <div class="list">
             <!-- Barn 1 -->
             <article class="child-card">
@@ -84,6 +95,6 @@
       </div>
     </div>
 
-    <script src="scripts.js"></script>
+
   </body>
 </html>
