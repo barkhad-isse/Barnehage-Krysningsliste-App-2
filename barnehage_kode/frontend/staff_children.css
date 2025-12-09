@@ -1,0 +1,61 @@
+/* staff_children.css
+   Spesifikk stil for barnelisten i en avdeling.
+*/
+
+.child-card {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid #e5e7eb;
+  padding: 16px 18px 16px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+}
+
+.child-header {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.child-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.avatar-purple {
+  background: linear-gradient(135deg, #e9d5ff, #8b5cf6);
+}
+
+.avatar-blue {
+  background: linear-gradient(135deg, #dbeafe, #2563eb);
+}
+
+.avatar-pink {
+  background: linear-gradient(135deg, #fed7e2, #ec4899);
+}
+
+.child-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.child-time {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.child-status-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  font-size: 13px;
+  margin-bottom: 4px;
+}

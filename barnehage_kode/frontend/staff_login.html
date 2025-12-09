@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Innlogging for ansatt</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="staff_login.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="app-card">
+        <!-- Topp med ikon -->
+        <header class="card-header">
+          <div class="header-icon header-icon-blue">👥</div>
+          <h1>Innlogging for ansatt</h1>
+          <p>Logg inn for å fortsette</p>
+        </header>
+
+        <!-- Login-skjema (demo – ingen ekte validering) -->
+        <main class="card-body">
+          <div class="login-form">
+            <!-- E-post -->
+            <div class="form-field">
+              <label class="form-label" for="staff-email">E-post</label>
+              <div class="input-wrapper">
+                <span>📧</span>
+                <input
+                  id="staff-email"
+                  class="input"
+                  type="text"
+                  placeholder="din@barnehage.no"
+                />
+              </div>
+            </div>
+
+            <!-- Passord -->
+            <div class="form-field">
+              <label class="form-label" for="staff-password">Passord</label>
+              <div class="input-wrapper">
+                <span>🔒</span>
+                <input
+                  id="staff-password"
+                  class="input"
+                  type="password"
+                  placeholder="********"
+                />
+              </div>
+            </div>
+
+            <!-- Knapp som alltid sender deg videre -->
+            <button
+              type="button"
+              class="btn btn-primary btn-block"
+              onclick="window.location.href='staff_departments.html';"
+            >
+              Logg inn
+            </button>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Detaljer – Emma Hansen</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="staff_child_details.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="app-card">
+        <!-- Topbar med tilbake -->
+        <header class="card-topbar">
+          <a class="back-link" href="staff_children.html">
+            ← <span>Tilbake</span>
+          </a>
+          <div class="card-topbar-title">Detaljer</div>
+        </header>
+
+        <main class="card-body">
+          <!-- Barnets "profil"-kort -->
+          <section class="detail-card mb-16">
+            <div class="detail-avatar avatar-gradient">👤</div>
+            <div class="detail-name">Emma Hansen</div>
+          </section>
+
+          <!-- Barneinformasjon -->
+          <section class="detail-card mb-16">
+            <h2 class="detail-title">Barneinformasjon</h2>
+            <div class="detail-row">
+              <span>📅 Fødselsdato</span>
+              <span>2020-05-15</span>
+            </div>
+            <div class="detail-row">
+              <span>⚠️ Allergier</span>
+              <span>Nøtter</span>
+            </div>
+            <div class="detail-row">
+              <span>🕒 Levert</span>
+              <span>08:15</span>
+            </div>
+          </section>
+
+          <!-- Kontaktinformasjon -->
+          <section class="detail-card mb-16">
+            <h2 class="detail-title">Kontaktinformasjon</h2>
+
+            <div class="parent-card parent-card-1 mb-8">
+              <div class="parent-title">Forelder 1: Anne Hansen</div>
+              <div>📞 +47 123 45 678</div>
+              <div>✉️ anne.hansen@email.com</div>
+            </div>
+
+            <div class="parent-card parent-card-2">
+              <div class="parent-title">Forelder 2: Per Hansen</div>
+              <div>📞 +47 234 56 789</div>
+              <div>✉️ per.hansen@email.com</div>
+            </div>
+          </section>
+
+          <!-- Status-knapper -->
+          <section class="detail-card mb-16">
+            <h2 class="detail-title">Status</h2>
+            <div class="status-buttons">
+              <!-- data-status-group = "emma-status" betyr at disse tre hører sammen -->
+              <button
+                class="btn btn-success btn-block status-btn status-active"
+                data-status-group="emma-status"
+                data-status-value="present"
+                data-navigate-to="staff_status_confirm.html"
+              >
+                Tilstede
+              </button>
+              <button
+                class="btn btn-warning btn-block status-btn"
+                data-status-group="emma-status"
+                data-status-value="coming-later"
+                data-navigate-to="staff_status_confirm.html"
+              >
+                Kommer senere
+              </button>
+              <button
+                class="btn btn-info btn-block status-btn"
+                data-status-group="emma-status"
+                data-status-value="picked-up"
+                data-navigate-to="staff_status_confirm.html"
+              >
+                Hentet
+              </button>
+            </div>
+          </section>
+
+          <!-- Notater -->
+          <section class="detail-card">
+            <div class="notes-header">
+              <h2 class="detail-title">Notater fra personalet</h2>
+              <button id="save-notes-btn" class="btn btn-info btn-small">
+                Lagre
+              </button>
+            </div>
+            <div class="textarea-wrapper">
+              <textarea
+                id="notes-field"
+                class="textarea"
+                placeholder="Legg til notater her..."
+              ></textarea>
+            </div>
+          </section>
+
+          <!-- Bunnnavigasjon for ansatte -->
+          <nav class="bottom-nav">
+            <div class="bottom-nav-item bottom-nav-active">
+              <div class="bottom-nav-icon">👥</div>
+              <span>Avdelinger</span>
+            </div>
+            <div class="bottom-nav-item">
+              <div class="bottom-nav-icon">⚙️</div>
+              <span>Innstillinger</span>
+            </div>
+          </nav>
+        </main>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

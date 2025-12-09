@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blåbær – barn</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="staff_children.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="app-card">
+        <!-- Topbar med tilbake-lenke -->
+        <header class="card-topbar">
+          <a class="back-link" href="staff_departments.html">
+            ← <span>Tilbake</span>
+          </a>
+          <div class="card-topbar-title">Blåbær</div>
+          <div class="card-topbar-subtitle">3 av 5 tilstede</div>
+        </header>
+
+        <main class="card-body">
+          <div class="list">
+            <!-- Barn 1 -->
+            <article class="child-card">
+              <div class="child-header">
+                <div class="child-avatar avatar-purple">E</div>
+                <div>
+                  <div class="child-name">Emma Hansen</div>
+                  <div class="badge">
+                    <span class="badge-dot"></span>
+                    <span>Tilstede</span>
+                  </div>
+                  <div class="child-time">🕒 Levert: 08:15</div>
+                </div>
+              </div>
+              <button
+                class="btn btn-info btn-block"
+                onclick="window.location.href='staff_child_details.html';"
+              >
+                ⭕ Detaljer
+              </button>
+            </article>
+
+            <!-- Barn 2 -->
+            <article class="child-card">
+              <div class="child-header">
+                <div class="child-avatar avatar-blue">N</div>
+                <div>
+                  <div class="child-name">Noah Andersen</div>
+                  <div class="child-status-pill">Ikke kommet</div>
+                  <div class="child-time">🕒 Levert: –</div>
+                </div>
+              </div>
+              <button
+                class="btn btn-info btn-block"
+                onclick="window.location.href='staff_child_details.html';"
+              >
+                ⭕ Detaljer
+              </button>
+            </article>
+
+            <!-- Barn 3 -->
+            <article class="child-card">
+              <div class="child-header">
+                <div class="child-avatar avatar-pink">O</div>
+                <div>
+                  <div class="child-name">Olivia Berg</div>
+                  <div class="badge">
+                    <span class="badge-dot"></span>
+                    <span>Tilstede</span>
+                  </div>
+                  <div class="child-time">🕒 Levert: 07:45</div>
+                </div>
+              </div>
+              <button
+                class="btn btn-info btn-block"
+                onclick="window.location.href='staff_child_details.html';"
+              >
+                ⭕ Detaljer
+              </button>
+            </article>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

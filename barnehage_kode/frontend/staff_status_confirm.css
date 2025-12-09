@@ -1,0 +1,35 @@
+/* staff_status_confirm.css
+   Spesifikk stil for registrert-siden.
+*/
+
+.confirm-body {
+  padding-top: 80px;
+  text-align: center;
+}
+
+.confirm-icon-wrapper {
+  margin-bottom: 16px;
+}
+
+.confirm-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #bbf7d0);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.confirm-title {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.confirm-text {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #6b7280;
+}

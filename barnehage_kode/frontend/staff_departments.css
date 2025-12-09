@@ -1,0 +1,15 @@
+/* staff_departments.css
+   Spesifikk stil for avdelingslisten.
+*/
+
+.dep-blue {
+  background: linear-gradient(135deg, #dbeafe, #2563eb);
+}
+
+.dep-red {
+  background: linear-gradient(135deg, #fee2e2, #ef4444);
+}
+
+.dep-yellow {
+  background: linear-gradient(135deg, #fef3c7, #f59e0b);
+}

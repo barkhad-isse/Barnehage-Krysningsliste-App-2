@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mitt barn</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="parent_dashboard.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="app-card">
+        <!-- Topbar -->
+        <header class="card-topbar">
+          <div class="card-topbar-row">
+            <div>
+              <div class="card-topbar-title">Mitt barn</div>
+              <div class="card-topbar-subtitle">
+                Registrer inn- og utkryssing
+              </div>
+            </div>
+            <div class="topbar-actions">
+              <span>⚙️</span>
+              <span>↗️</span>
+            </div>
+          </div>
+        </header>
+
+        <main class="card-body">
+          <!-- Barnets kort -->
+          <section class="detail-card mb-16">
+            <div class="parent-avatar avatar-gradient">👤</div>
+            <div class="parent-child-name">Emma Hansen</div>
+            <div class="parent-status-pill">
+              <span class="status-dot"></span>
+              <span>Tilstede (08:15)</span>
+            </div>
+
+            <button
+              class="btn btn-info btn-block mb-8"
+              data-status-group="parent-status"
+              data-status-value="kryss-ut"
+            >
+              ⬅️ Kryss ut
+            </button>
+            <button
+              class="btn btn-warning btn-block"
+              data-status-group="parent-status"
+              data-status-value="kommer-senere"
+            >
+              ⏰ Kommer senere
+            </button>
+          </section>
+
+          <!-- Send beskjed til barnehagen -->
+          <section class="detail-card">
+            <h2 class="detail-title">Send beskjed til barnehagen</h2>
+            <div class="textarea-wrapper">
+              <textarea
+                id="parent-msg-field"
+                class="textarea"
+                placeholder="F.eks. 'Emma har vondt i halsen i dag'..."
+              ></textarea>
+            </div>
+            <button
+              id="send-parent-msg"
+              class="btn btn-primary btn-block send-btn"
+            >
+              Send melding
+            </button>
+          </section>
+
+          <!-- Bunnnav -->
+          <nav class="bottom-nav">
+            <div class="bottom-nav-item bottom-nav-active">
+              <div class="bottom-nav-icon">👤</div>
+              <span>Mitt barn</span>
+            </div>
+            <div class="bottom-nav-item">
+              <div class="bottom-nav-icon">⚙️</div>
+              <span>Innstillinger</span>
+            </div>
+          </nav>
+        </main>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

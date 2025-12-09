@@ -1,0 +1,16 @@
+/* parent_login.css
+   Spesifikk stil for forelder-login.
+*/
+
+.header-icon-purple {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #e9d5ff);
+  color: #8b5cf6;
+}
+
+.parent-btn {
+  background: #8b5cf6;
+}
+
+.parent-btn:hover {
+  background: #7c3aed;
+}

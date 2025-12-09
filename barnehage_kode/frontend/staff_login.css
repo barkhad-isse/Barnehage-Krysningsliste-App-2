@@ -1,0 +1,12 @@
+/* staff_login.css
+   Spesifikk stil for ansatt-login.
+*/
+
+.header-icon-blue {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #c7ddff);
+  color: #2563eb;
+}
+
+.login-form {
+  margin-top: 8px;
+}
