@@ -3,14 +3,15 @@
 */
 
 .header-icon-purple {
-  background: radial-gradient(circle at 30% 30%, #ffffff, #e9d5ff);
-  color: #8b5cf6;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #ead8ff);
+  color: #9b5cf6;
 }
 
 .parent-btn {
-  background: #8b5cf6;
+  background: linear-gradient(135deg, #b84bff, #9933e7);
+  box-shadow: 0 12px 30px rgba(153, 51, 231, 0.28);
 }
 
 .parent-btn:hover {
-  background: #7c3aed;
+  background: linear-gradient(135deg, #9933e7, #882dd0);
 }

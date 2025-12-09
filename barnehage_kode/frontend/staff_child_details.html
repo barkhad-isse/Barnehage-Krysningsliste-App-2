@@ -12,26 +12,26 @@
       <div class="app-card">
         <!-- Topbar med tilbake -->
         <header class="card-topbar">
-          <a class="back-link" href="staff_children.html">
+          <a class="back-link" href="staff_children.html" aria-label="Tilbake til barneliste">
             ← <span>Tilbake</span>
           </a>
           <div class="card-topbar-title">Detaljer</div>
+          <div class="card-topbar-subtitle">Blåbær · 2 av 5 tilstede</div>
         </header>
 
         <main class="card-body">
-            <div class="logout-bar">
-              <button
-                  class="btn btn-secondary btn-small"
-                  onclick="window.location.href='landing.html';"
-              >
-                  Logg ut
-              </button>
-            </div>
-</div>
+          <div class="logout-bar">
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="window.location.href='landing.html';"
+            >
+              Logg ut
+            </button>
+          </div>
 
           <!-- Barnets "profil"-kort -->
           <section class="detail-card mb-16">
-            <div class="detail-avatar avatar-gradient">👤</div>
+            <div class="detail-avatar avatar-gradient" aria-hidden="true">👤</div>
             <div class="detail-name">Emma Hansen</div>
           </section>
 
@@ -47,8 +47,12 @@
               <span>Nøtter</span>
             </div>
             <div class="detail-row">
-              <span>🕒 Levert</span>
+              <span>🟢 Levert</span>
               <span>08:15</span>
+            </div>
+            <div class="detail-row">
+              <span>🔵 Hentet</span>
+              <span>15:13</span>
             </div>
           </section>
 
@@ -73,7 +77,6 @@
           <section class="detail-card mb-16">
             <h2 class="detail-title">Status</h2>
             <div class="status-buttons">
-              <!-- data-status-group = "emma-status" betyr at disse tre hører sammen -->
               <button
                 class="btn btn-success btn-block status-btn status-active"
                 data-status-group="emma-status"
@@ -121,18 +124,16 @@
           <!-- Bunnnavigasjon for ansatte -->
           <nav class="bottom-nav">
             <div class="bottom-nav-item bottom-nav-active">
-              <div class="bottom-nav-icon">👥</div>
+              <div class="bottom-nav-icon" aria-hidden="true">👥</div>
               <span>Avdelinger</span>
             </div>
             <div class="bottom-nav-item">
-              <div class="bottom-nav-icon">⚙️</div>
+              <div class="bottom-nav-icon" aria-hidden="true">⚙️</div>
               <span>Innstillinger</span>
             </div>
           </nav>
         </main>
       </div>
     </div>
-
-
   </body>
 </html>

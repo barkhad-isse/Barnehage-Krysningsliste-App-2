@@ -3,10 +3,10 @@
 */
 
 .header-icon-blue {
-  background: radial-gradient(circle at 30% 30%, #ffffff, #c7ddff);
-  color: #2563eb;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #cfe1ff);
+  color: #1b56ff;
 }
 
 .login-form {
-  margin-top: 8px;
+  margin-top: 12px;
 }

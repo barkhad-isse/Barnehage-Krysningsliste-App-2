@@ -17,7 +17,7 @@
               <div class="card-topbar-title">Avdelinger</div>
               <div class="card-topbar-subtitle">Velg en avdeling</div>
             </div>
-            <div class="topbar-actions">
+            <div class="topbar-actions" aria-hidden="true">
               <span>⚙️</span>
               <span>↗️</span>
             </div>
@@ -25,59 +25,52 @@
         </header>
 
         <main class="card-body">
-          <!-- LOGG UT-KNAPP (sender deg tilbake til startsiden) -->
-              <div class="logout-bar">
-              <button
-                  class="btn btn-secondary btn-small"
-                  onclick="window.location.href='landing.html';"
-              >
-                  Logg ut
-              </button>
-            </div>
+          <div class="logout-bar">
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="window.location.href='landing.html';"
+            >
+              Logg ut
+            </button>
+          </div>
 
-        <!-- Liste over avdelinger -->
-        <main class="card-body">
+          <!-- Liste over avdelinger -->
           <div class="list">
-            <!-- Blåbær -->
             <a href="staff_children.html" class="list-card">
               <div class="list-left">
-                <div class="list-icon dep-blue">👥</div>
+                <div class="list-icon dep-blue" aria-hidden="true">👥</div>
                 <div>
                   <div class="list-text-title">Blåbær</div>
-                  <div class="list-text-sub">3 av 5 tilstede</div>
+                  <div class="list-text-sub">2 av 5 tilstede</div>
                 </div>
               </div>
-              <div class="list-arrow">›</div>
+              <div class="list-arrow" aria-hidden="true">›</div>
             </a>
 
-            <!-- Jordbær -->
             <a href="staff_children.html" class="list-card">
               <div class="list-left">
-                <div class="list-icon dep-red">👥</div>
+                <div class="list-icon dep-red" aria-hidden="true">👥</div>
                 <div>
                   <div class="list-text-title">Jordbær</div>
                   <div class="list-text-sub">2 av 3 tilstede</div>
                 </div>
               </div>
-              <div class="list-arrow">›</div>
+              <div class="list-arrow" aria-hidden="true">›</div>
             </a>
 
-            <!-- Solstrålen -->
             <a href="staff_children.html" class="list-card">
               <div class="list-left">
-                <div class="list-icon dep-yellow">👥</div>
+                <div class="list-icon dep-yellow" aria-hidden="true">👥</div>
                 <div>
                   <div class="list-text-title">Solstrålen</div>
                   <div class="list-text-sub">2 av 4 tilstede</div>
                 </div>
               </div>
-              <div class="list-arrow">›</div>
+              <div class="list-arrow" aria-hidden="true">›</div>
             </a>
           </div>
         </main>
       </div>
     </div>
-
-
   </body>
 </html>

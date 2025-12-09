@@ -3,13 +3,16 @@
 */
 
 .dep-blue {
-  background: linear-gradient(135deg, #dbeafe, #2563eb);
+  background: linear-gradient(135deg, #e4edff, #2d66ff);
+  color: #1f2a3d;
 }
 
 .dep-red {
-  background: linear-gradient(135deg, #fee2e2, #ef4444);
+  background: linear-gradient(135deg, #ffe5e5, #e34c4c);
+  color: #3f1717;
 }
 
 .dep-yellow {
-  background: linear-gradient(135deg, #fef3c7, #f59e0b);
+  background: linear-gradient(135deg, #fff3d8, #f0b23f);
+  color: #3f2a0f;
 }

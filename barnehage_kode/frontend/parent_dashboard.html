@@ -19,7 +19,7 @@
                 Registrer inn- og utkryssing
               </div>
             </div>
-            <div class="topbar-actions">
+            <div class="topbar-actions" aria-hidden="true">
               <span>⚙️</span>
               <span>↗️</span>
             </div>
@@ -27,38 +27,30 @@
         </header>
 
         <main class="card-body">
-
           <div class="logout-bar">
-              <button
-                  class="btn btn-secondary btn-small"
-                  onclick="window.location.href='landing.html';"
-              >
-                  Logg ut
-              </button>
-            </div>
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="window.location.href='landing.html';"
+            >
+              Logg ut
+            </button>
+          </div>
 
           <!-- Barnets kort -->
           <section class="detail-card mb-16">
-            <div class="parent-avatar avatar-gradient">👤</div>
+            <div class="parent-avatar avatar-gradient" aria-hidden="true">👤</div>
             <div class="parent-child-name">Emma Hansen</div>
             <div class="parent-status-pill">
               <span class="status-dot"></span>
-              <span>Tilstede (08:15)</span>
+              <span>Ikke kommet</span>
             </div>
 
             <button
-              class="btn btn-info btn-block mb-8"
+              class="btn btn-success btn-block mb-8"
               data-status-group="parent-status"
-              data-status-value="kryss-ut"
+              data-status-value="kryss-inn"
             >
-              ⬅️ Kryss ut
-            </button>
-            <button
-              class="btn btn-warning btn-block"
-              data-status-group="parent-status"
-              data-status-value="kommer-senere"
-            >
-              ⏰ Kommer senere
+              Kryss inn
             </button>
           </section>
 
@@ -74,7 +66,7 @@
             </div>
             <button
               id="send-parent-msg"
-              class="btn btn-primary btn-block send-btn"
+              class="btn btn-secondary btn-block send-btn"
             >
               Send melding
             </button>
@@ -83,18 +75,16 @@
           <!-- Bunnnav -->
           <nav class="bottom-nav">
             <div class="bottom-nav-item bottom-nav-active">
-              <div class="bottom-nav-icon">👤</div>
+              <div class="bottom-nav-icon" aria-hidden="true">👤</div>
               <span>Mitt barn</span>
             </div>
             <div class="bottom-nav-item">
-              <div class="bottom-nav-icon">⚙️</div>
+              <div class="bottom-nav-icon" aria-hidden="true">⚙️</div>
               <span>Innstillinger</span>
             </div>
           </nav>
         </main>
       </div>
     </div>
-
-
   </body>
 </html>

@@ -12,22 +12,22 @@
       <div class="app-card">
         <!-- Topbar med tilbake-lenke -->
         <header class="card-topbar">
-          <a class="back-link" href="staff_departments.html">
+          <a class="back-link" href="staff_departments.html" aria-label="Tilbake til avdelinger">
             ← <span>Tilbake</span>
           </a>
           <div class="card-topbar-title">Blåbær</div>
-          <div class="card-topbar-subtitle">3 av 5 tilstede</div>
+          <div class="card-topbar-subtitle">2 av 5 tilstede</div>
         </header>
 
         <main class="card-body">
-            <div class="logout-bar">
-              <button
-                  class="btn btn-secondary btn-small"
-                  onclick="window.location.href='landing.html';"
-              >
-                  Logg ut
-              </button>
-            </div>
+          <div class="logout-bar">
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="window.location.href='landing.html';"
+            >
+              Logg ut
+            </button>
+          </div>
 
           <div class="list">
             <!-- Barn 1 -->
@@ -36,18 +36,15 @@
                 <div class="child-avatar avatar-purple">E</div>
                 <div>
                   <div class="child-name">Emma Hansen</div>
-                  <div class="badge">
-                    <span class="badge-dot"></span>
-                    <span>Tilstede</span>
-                  </div>
-                  <div class="child-time">🕒 Levert: 08:15</div>
+                  <div class="badge badge-neutral">Hentet</div>
+                  <div class="child-time">Levert: 08:15 · Hentet: 15:13</div>
                 </div>
               </div>
               <button
                 class="btn btn-info btn-block"
                 onclick="window.location.href='staff_child_details.html';"
               >
-                ⭕ Detaljer
+                Detaljer ›
               </button>
             </article>
 
@@ -58,14 +55,14 @@
                 <div>
                   <div class="child-name">Noah Andersen</div>
                   <div class="child-status-pill">Ikke kommet</div>
-                  <div class="child-time">🕒 Levert: –</div>
+                  <div class="child-time">Levert: –</div>
                 </div>
               </div>
               <button
                 class="btn btn-info btn-block"
                 onclick="window.location.href='staff_child_details.html';"
               >
-                ⭕ Detaljer
+                Detaljer ›
               </button>
             </article>
 
@@ -79,21 +76,19 @@
                     <span class="badge-dot"></span>
                     <span>Tilstede</span>
                   </div>
-                  <div class="child-time">🕒 Levert: 07:45</div>
+                  <div class="child-time">Levert: 07:45</div>
                 </div>
               </div>
               <button
                 class="btn btn-info btn-block"
                 onclick="window.location.href='staff_child_details.html';"
               >
-                ⭕ Detaljer
+                Detaljer ›
               </button>
             </article>
           </div>
         </main>
       </div>
     </div>
-
-
   </body>
 </html>

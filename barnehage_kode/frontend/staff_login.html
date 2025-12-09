@@ -12,19 +12,19 @@
       <div class="app-card">
         <!-- Topp med ikon -->
         <header class="card-header">
-          <div class="header-icon header-icon-blue">👥</div>
+          <div class="header-icon header-icon-blue" aria-hidden="true">👥</div>
           <h1>Innlogging for ansatt</h1>
           <p>Logg inn for å fortsette</p>
         </header>
 
-        <!-- Login-skjema (demo – ingen ekte validering) -->
+        <!-- Login-skjema (demo) -->
         <main class="card-body">
           <div class="login-form">
             <!-- E-post -->
             <div class="form-field">
               <label class="form-label" for="staff-email">E-post</label>
               <div class="input-wrapper">
-                <span>📧</span>
+                <span aria-hidden="true">✉️</span>
                 <input
                   id="staff-email"
                   class="input"
@@ -38,7 +38,7 @@
             <div class="form-field">
               <label class="form-label" for="staff-password">Passord</label>
               <div class="input-wrapper">
-                <span>🔒</span>
+                <span aria-hidden="true">🔒</span>
                 <input
                   id="staff-password"
                   class="input"
@@ -60,6 +60,5 @@
         </main>
       </div>
     </div>
-
   </body>
 </html>
