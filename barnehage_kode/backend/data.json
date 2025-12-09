@@ -1,0 +1,93 @@
+{
+  "departments": [
+    {
+      "id": "blaabaer",
+      "name": "Blåbær",
+      "child_ids": ["emma", "noah", "olivia"]
+    },
+    {
+      "id": "bringebaer",
+      "name": "Bringebær",
+      "child_ids": ["lars"]
+    }
+  ],
+  "guardians": [
+    {
+      "id": "p1",
+      "name": "Forelder Emma",
+      "child_ids": ["emma"]
+    },
+    {
+      "id": "p2",
+      "name": "Forelder Noah",
+      "child_ids": ["noah"]
+    },
+    {
+      "id": "p3",
+      "name": "Forelder Olivia",
+      "child_ids": ["olivia"]
+    },
+    {
+      "id": "p4",
+      "name": "Forelder Lars",
+      "child_ids": ["lars"]
+    }
+  ],
+  "children": [
+    {
+      "id": "emma",
+      "name": "Emma Hansen",
+      "department_id": "blaabaer",
+      "age": 4,
+      "guardian_ids": ["p1"],
+      "status": "checked_in",
+      "last_checkin": "2024-12-09T07:45:00Z",
+      "last_checkout": null
+    },
+    {
+      "id": "noah",
+      "name": "Noah Andersen",
+      "department_id": "blaabaer",
+      "age": 5,
+      "guardian_ids": ["p2"],
+      "status": "not_arrived",
+      "last_checkin": null,
+      "last_checkout": null
+    },
+    {
+      "id": "olivia",
+      "name": "Olivia Berg",
+      "department_id": "blaabaer",
+      "age": 4,
+      "guardian_ids": ["p3"],
+      "status": "checked_in",
+      "last_checkin": "2024-12-09T07:30:00Z",
+      "last_checkout": null
+    },
+    {
+      "id": "lars",
+      "name": "Lars Nilsen",
+      "department_id": "bringebaer",
+      "age": 3,
+      "guardian_ids": ["p4"],
+      "status": "checked_out",
+      "last_checkin": "2024-12-08T08:00:00Z",
+      "last_checkout": "2024-12-08T15:30:00Z"
+    }
+  ],
+  "checkins": [
+    {
+      "child_id": "emma",
+      "timestamp": "2024-12-09T07:45:00Z",
+      "by_role": "staff",
+      "actor_id": "staff123"
+    },
+    {
+      "child_id": "olivia",
+      "timestamp": "2024-12-09T07:30:00Z",
+      "by_role": "staff",
+      "actor_id": "staff123"
+    }
+  ],
+  "checkouts": []
+}
