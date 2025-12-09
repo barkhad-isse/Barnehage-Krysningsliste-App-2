@@ -355,3 +355,16 @@ body {
 .bottom-nav-active {
   color: #111827;
 }
+
+/* Mindre knapp-variant, fin til "Logg ut" */
+.btn-small {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* Rad øverst i kortet med logg ut-knapp til høyre */
+.logout-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 24px 0;
+}
