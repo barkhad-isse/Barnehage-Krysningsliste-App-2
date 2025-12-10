@@ -421,5 +421,11 @@ body {
 .logout-bar {
   display: flex;
   justify-content: flex-end;
-  padding: 8px 0 10px;
+  padding: 0 0 8px;
+}
+
+/* Stram variant slik at knappen ligger nær topplinjen */
+.logout-bar.top-align {
+  margin-top: -18px;
+  margin-bottom: 2px;
 }
