@@ -6,16 +6,18 @@ from . import data_service
 
 
 class RequestContext:
-  def __init__(self, role: str, parent_id: Optional[str], department_id: Optional[str]):
+  def __init__(self, role: str, parent_id: Optional[int], department_id: Optional[int], user_id: Optional[int]):
     self.role = role
     self.parent_id = parent_id
     self.department_id = department_id
+    self.user_id = user_id
 
 
 def get_context(
   x_role: Optional[str] = Header(default=None),
   x_parent_id: Optional[str] = Header(default=None),
   x_department: Optional[str] = Header(default=None),
+  x_user_id: Optional[str] = Header(default=None),
 ) -> RequestContext:
   if not x_role:
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Mangler X-Role header")
@@ -23,7 +25,18 @@ def get_context(
   if role not in {"parent", "staff", "admin"}:
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Ugyldig rolle")
 
-  return RequestContext(role=role, parent_id=x_parent_id, department_id=x_department)
+  def to_int(val: Optional[str]) -> Optional[int]:
+    try:
+      return int(val) if val is not None else None
+    except ValueError:
+      return None
+
+  return RequestContext(
+    role=role,
+    parent_id=to_int(x_parent_id),
+    department_id=to_int(x_department),
+    user_id=to_int(x_user_id),
+  )
 
 
 def assert_can_view_child(ctx: RequestContext, child_id: str) -> None:

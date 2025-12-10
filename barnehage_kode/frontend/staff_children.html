@@ -23,10 +23,10 @@
               >
                 ← <span data-i18n="staffChildren.back">Tilbake</span>
               </a>
-              <div class="card-topbar-title" data-i18n="staffChildren.title">
+              <div id="department-title" class="card-topbar-title" data-i18n="staffChildren.title">
                 Blåbær
               </div>
-              <div class="card-topbar-subtitle" data-i18n="staffChildren.subtitle">
+              <div id="department-subtitle" class="card-topbar-subtitle" data-i18n="staffChildren.subtitle">
                 2 av 5 tilstede
               </div>
             </div>
@@ -52,72 +52,7 @@
         </header>
 
         <main class="card-body">
-          <div class="list">
-            <article class="child-card">
-              <div class="child-header">
-                <div class="child-avatar avatar-purple">E</div>
-                <div>
-                  <div class="child-name">Emma Hansen</div>
-                  <div class="badge badge-neutral" data-i18n="staffChildren.childStatus.checkedOut">
-                    Hentet
-                  </div>
-                  <div class="child-time" data-i18n="staffChildren.childTime.emma">
-                    Levert: 08:15 • Hentet: 15:13
-                  </div>
-                </div>
-              </div>
-              <button
-                class="btn btn-info btn-block"
-                onclick="window.location.href='staff_child_details.html';"
-                data-i18n="staffChildren.details"
-              >
-                Detaljer →
-              </button>
-            </article>
-
-            <article class="child-card">
-              <div class="child-header">
-                <div class="child-avatar avatar-blue">N</div>
-                <div>
-                  <div class="child-name">Noah Andersen</div>
-                  <div class="child-status-pill" data-i18n="staffChildren.childStatus.notArrived">
-                    Ikke kommet
-                  </div>
-                  <div class="child-time" data-i18n="staffChildren.childTime.noah">Levert: –</div>
-                </div>
-              </div>
-              <button
-                class="btn btn-info btn-block"
-                onclick="window.location.href='staff_child_details.html';"
-                data-i18n="staffChildren.details"
-              >
-                Detaljer →
-              </button>
-            </article>
-
-            <article class="child-card">
-              <div class="child-header">
-                <div class="child-avatar avatar-pink">O</div>
-                <div>
-                  <div class="child-name">Olivia Berg</div>
-                  <div class="badge">
-                    <span class="badge-dot"></span>
-                    <span data-i18n="staffChildren.childStatus.present">Tilstede</span>
-                  </div>
-                  <div class="child-time" data-i18n="staffChildren.childTime.olivia">
-                    Levert: 07:45
-                  </div>
-                </div>
-              </div>
-              <button
-                class="btn btn-info btn-block"
-                onclick="window.location.href='staff_child_details.html';"
-                data-i18n="staffChildren.details"
-              >
-                Detaljer →
-              </button>
-            </article>
-          </div>
+          <div id="children-list" class="list" aria-live="polite"></div>
         </main>
       </div>
     </div>

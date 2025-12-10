@@ -392,6 +392,177 @@ function initParentMessage() {
   });
 }
 
+// --- Backend-tilkobling (MySQL API) ---
+const API_BASE = "http://localhost:8000";
+
+async function apiGet(path, headers = {}) {
+  const res = await fetch(`${API_BASE}${path}`, {
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    },
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`API-feil (${res.status}): ${text}`);
+  }
+  return res.json();
+}
+
+function formatTime(isoString) {
+  if (!isoString) return "";
+  try {
+    const date = new Date(isoString);
+    return date.toLocaleTimeString("no-NO", { hour: "2-digit", minute: "2-digit" });
+  } catch {
+    return isoString;
+  }
+}
+
+function initStaffDepartments() {
+  const listEl = document.getElementById("departments-list");
+  if (!listEl) return;
+
+  listEl.innerHTML = '<div class="text-muted">Laster avdelinger...</div>';
+  const colorMap = { 10: "dep-blue", 11: "dep-red", 12: "dep-yellow" };
+
+  apiGet("/api/departments", { "X-Role": "admin" })
+    .then((departments) => {
+      if (!departments.length) {
+        listEl.innerHTML = '<div class="text-muted">Ingen avdelinger funnet.</div>';
+        return;
+      }
+      listEl.innerHTML = "";
+      departments.forEach((dep) => {
+        const card = document.createElement("a");
+        card.href = "staff_children.html";
+        card.className = "list-card";
+        card.dataset.departmentId = dep.id;
+        card.dataset.departmentName = dep.name;
+
+        const presentText = dep.child_count === 1 ? "1 barn" : `${dep.child_count} barn`;
+        const colorClass = colorMap[dep.id] || "dep-blue";
+
+        card.innerHTML = `
+          <div class="list-left">
+            <div class="list-icon ${colorClass}" aria-hidden="true">🏡</div>
+            <div>
+              <div class="list-text-title">${dep.name}</div>
+              <div class="list-text-sub">${presentText}</div>
+            </div>
+          </div>
+          <div class="list-arrow" aria-hidden="true">→</div>
+        `;
+
+        card.addEventListener("click", () => {
+          localStorage.setItem("selectedDepartmentId", dep.id);
+          localStorage.setItem("selectedDepartmentName", dep.name);
+        });
+
+        listEl.appendChild(card);
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      listEl.innerHTML = '<div class="text-muted">Kunne ikke laste avdelinger.</div>';
+    });
+}
+
+function initStaffChildren() {
+  const listEl = document.getElementById("children-list");
+  if (!listEl) return;
+
+  const depId = localStorage.getItem("selectedDepartmentId") || "10";
+  const depName = localStorage.getItem("selectedDepartmentName") || "Avdeling";
+
+  const titleEl = document.getElementById("department-title");
+  const subtitleEl = document.getElementById("department-subtitle");
+  if (titleEl) titleEl.textContent = depName;
+
+  listEl.innerHTML = '<div class="text-muted">Laster barn...</div>';
+
+  apiGet("/api/barn", { "X-Role": "staff", "X-Department": depId })
+    .then((children) => {
+      if (!children.length) {
+        listEl.innerHTML = '<div class="text-muted">Ingen barn i denne avdelingen.</div>';
+        if (subtitleEl) subtitleEl.textContent = "0 tilstede";
+        return;
+      }
+
+      const present = children.filter((c) => c.last_checkin && !c.last_checkout).length;
+      if (subtitleEl) subtitleEl.textContent = `${present} av ${children.length} tilstede`;
+
+      listEl.innerHTML = "";
+      children.forEach((child) => {
+        const card = document.createElement("article");
+        card.className = "child-card";
+
+        const initials = child.name ? child.name.charAt(0).toUpperCase() : "?";
+        const presentFlag = child.last_checkin && !child.last_checkout;
+        const statusBadge = presentFlag
+          ? `<div class="badge"><span class="badge-dot"></span><span>Tilstede</span></div>`
+          : `<div class="child-status-pill">Ikke kommet</div>`;
+
+        const timeText = child.last_checkin ? `🕒 Levert: ${formatTime(child.last_checkin)}` : "🕒 Levert: –";
+
+        card.innerHTML = `
+          <div class="child-header">
+            <div class="child-avatar avatar-blue">${initials}</div>
+            <div>
+              <div class="child-name">${child.name}</div>
+              ${statusBadge}
+              <div class="child-time">${timeText}</div>
+            </div>
+          </div>
+          <button class="btn btn-info btn-block detail-btn">
+            ⭕ Detaljer
+          </button>
+        `;
+
+        const btn = card.querySelector(".detail-btn");
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.setItem("selectedChildId", child.id);
+          window.location.href = "staff_child_details.html";
+        });
+
+        listEl.appendChild(card);
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      listEl.innerHTML = '<div class="text-muted">Kunne ikke laste barn.</div>';
+      if (subtitleEl) subtitleEl.textContent = "Feil ved henting";
+    });
+}
+
+function initChildDetails() {
+  const detailName = document.getElementById("detail-name");
+  if (!detailName) return;
+
+  const childId = localStorage.getItem("selectedChildId") || "300";
+  const depId = localStorage.getItem("selectedDepartmentId") || "10";
+
+  apiGet(`/api/child/${childId}`, { "X-Role": "staff", "X-Department": depId })
+    .then((child) => {
+      detailName.textContent = child.name || "Ukjent barn";
+
+      const presentFlag = child.last_checkin && !child.last_checkout;
+      const statusEl = document.getElementById("detail-status");
+      if (statusEl) statusEl.textContent = presentFlag ? "Tilstede" : "Ikke kommet/ut";
+
+      const timeEl = document.getElementById("detail-time");
+      if (timeEl) timeEl.textContent = child.last_checkin ? formatTime(child.last_checkin) : "–";
+
+      const birthEl = document.getElementById("detail-birth");
+      if (birthEl) birthEl.textContent = child.fodselsdato || "-";
+    })
+    .catch((err) => {
+      console.error(err);
+      detailName.textContent = "Fant ikke barn";
+    });
+}
+
 /*
 Når nettsiden blir lastet inn, vil alle funksjonene startes
 */
@@ -401,4 +572,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initStatusButtons();
   initSaveNotes();
   initParentMessage();
+   initStaffDepartments();
+   initStaffChildren();
+   initChildDetails();
 });

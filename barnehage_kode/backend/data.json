@@ -9,6 +9,11 @@
       "id": "bringebaer",
       "name": "Bringebær",
       "child_ids": ["lars"]
+    },
+    {
+      "id": "jordbaer",
+      "name": "Jordbær",
+      "child_ids": []
     }
   ],
   "guardians": [

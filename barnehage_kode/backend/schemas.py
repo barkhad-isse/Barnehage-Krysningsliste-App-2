@@ -10,17 +10,16 @@ class Department(BaseModel):
 
 
 class DepartmentResponse(BaseModel):
-  id: str
+  id: int
   name: str
   child_count: int
 
 
 class Child(BaseModel):
-  id: str
+  id: int
   name: str
-  department_id: str
-  age: Optional[int] = None
-  guardian_ids: List[str] = []
+  avdeling_id: Optional[int] = None
+  fodselsdato: Optional[str] = None
   status: Optional[str] = None
   last_checkin: Optional[str] = None
   last_checkout: Optional[str] = None
