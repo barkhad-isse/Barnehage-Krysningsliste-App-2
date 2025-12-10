@@ -19,23 +19,19 @@
                 Registrer inn- og utkryssing
               </div>
             </div>
-            <div class="topbar-actions" aria-hidden="true">
-              <span>⚙️</span>
-              <span>↗️</span>
+            <div class="topbar-actions">
+              <span aria-hidden="true">⚙️</span>
+              <button
+                class="btn btn-secondary btn-small"
+                onclick="window.location.href='landing.html';"
+              >
+                Logg ut
+              </button>
             </div>
           </div>
         </header>
 
         <main class="card-body">
-          <div class="logout-bar top-align">
-            <button
-              class="btn btn-secondary btn-small"
-              onclick="window.location.href='landing.html';"
-            >
-              Logg ut
-            </button>
-          </div>
-
           <!-- Barnets kort -->
           <section class="detail-card mb-16">
             <div class="parent-avatar avatar-gradient" aria-hidden="true">👤</div>
@@ -49,6 +45,7 @@
               class="btn btn-success btn-block mb-8"
               data-status-group="parent-status"
               data-status-value="kryss-inn"
+              data-navigate-to="parent_status_confirm.html"
             >
               Kryss inn
             </button>

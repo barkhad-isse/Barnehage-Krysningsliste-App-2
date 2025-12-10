@@ -10,31 +10,25 @@
   <body>
     <div class="app-shell">
       <div class="app-card">
-        <!-- Topbar med tittel og ikoner -->
         <header class="card-topbar">
           <div class="card-topbar-row">
             <div>
               <div class="card-topbar-title">Avdelinger</div>
               <div class="card-topbar-subtitle">Velg en avdeling</div>
             </div>
-            <div class="topbar-actions" aria-hidden="true">
-              <span>⚙️</span>
-              <span>↗️</span>
+            <div class="topbar-actions">
+              <span aria-hidden="true">⚙️</span>
+              <button
+                class="btn btn-secondary btn-small"
+                onclick="window.location.href='landing.html';"
+              >
+                Logg ut
+              </button>
             </div>
           </div>
         </header>
 
         <main class="card-body">
-          <div class="logout-bar top-align">
-            <button
-              class="btn btn-secondary btn-small"
-              onclick="window.location.href='landing.html';"
-            >
-              Logg ut
-            </button>
-          </div>
-
-          <!-- Liste over avdelinger -->
           <div class="list">
             <a href="staff_children.html" class="list-card">
               <div class="list-left">

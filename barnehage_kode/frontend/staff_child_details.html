@@ -12,22 +12,26 @@
       <div class="app-card">
         <!-- Topbar med tilbake -->
         <header class="card-topbar">
-          <a class="back-link" href="staff_children.html" aria-label="Tilbake til barneliste">
-            ← <span>Tilbake</span>
-          </a>
-          <div class="card-topbar-title">Detaljer</div>
-          <div class="card-topbar-subtitle">Blåbær · 2 av 5 tilstede</div>
+          <div class="card-topbar-row">
+            <div>
+              <a class="back-link" href="staff_children.html" aria-label="Tilbake til barneliste">
+                ← <span>Tilbake</span>
+              </a>
+              <div class="card-topbar-title">Detaljer</div>
+              <div class="card-topbar-subtitle">Blåbær · 2 av 5 tilstede</div>
+            </div>
+            <div class="topbar-actions">
+              <button
+                class="btn btn-secondary btn-small"
+                onclick="window.location.href='landing.html';"
+              >
+                Logg ut
+              </button>
+            </div>
+          </div>
         </header>
 
         <main class="card-body">
-          <div class="logout-bar top-align">
-            <button
-              class="btn btn-secondary btn-small"
-              onclick="window.location.href='landing.html';"
-            >
-              Logg ut
-            </button>
-          </div>
 
           <!-- Barnets "profil"-kort -->
           <section class="detail-card mb-16">
