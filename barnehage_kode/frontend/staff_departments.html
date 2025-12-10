@@ -2,7 +2,7 @@
 <html lang="no">
   <head>
     <meta charset="UTF-8" />
-    <title>Avdelinger</title>
+    <title data-i18n="staffDepartments.title">Avdelinger</title>
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/staff_departments.css" />
     <script src="js/scripts.js"></script>
@@ -13,14 +13,27 @@
         <header class="card-topbar">
           <div class="card-topbar-row">
             <div>
-              <div class="card-topbar-title">Avdelinger</div>
-              <div class="card-topbar-subtitle">Velg en avdeling</div>
+              <div class="card-topbar-title" data-i18n="staffDepartments.title">
+                Avdelinger
+              </div>
+              <div class="card-topbar-subtitle" data-i18n="staffDepartments.subtitle">
+                Velg en avdeling
+              </div>
             </div>
             <div class="topbar-actions">
-              <span aria-hidden="true">⚙️</span>
+              <button
+                class="icon-button"
+                aria-label="Innstillinger"
+                data-i18n="common.settings"
+                data-i18n-attr="aria-label"
+                onclick="window.location.href='settings.html';"
+              >
+                ⚙️
+              </button>
               <button
                 class="btn btn-secondary btn-small"
                 onclick="window.location.href='landing.html';"
+                data-i18n="common.logout"
               >
                 Logg ut
               </button>
@@ -31,38 +44,44 @@
         <main class="card-body">
           <div class="list">
             <a href="staff_children.html" class="list-card">
-              <div class="list-left">
-                <div class="list-icon dep-blue" aria-hidden="true">🏡</div>
-                <div>
-                  <div class="list-text-title">Blåbær</div>
-                  <div class="list-text-sub">2 av 5 tilstede</div>
+                <div class="list-left">
+                  <div class="list-icon dep-blue" aria-hidden="true">🏡</div>
+                  <div>
+                    <div class="list-text-title">Blåbær</div>
+                    <div class="list-text-sub" data-i18n="staffDepartments.blueberryStatus">
+                      2 av 5 tilstede
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="list-arrow" aria-hidden="true">→</div>
-            </a>
+                <div class="list-arrow" aria-hidden="true">→</div>
+              </a>
 
             <a href="staff_children.html" class="list-card">
-              <div class="list-left">
-                <div class="list-icon dep-red" aria-hidden="true">🏡</div>
-                <div>
-                  <div class="list-text-title">Jordbær</div>
-                  <div class="list-text-sub">2 av 3 tilstede</div>
+                <div class="list-left">
+                  <div class="list-icon dep-red" aria-hidden="true">🏡</div>
+                  <div>
+                    <div class="list-text-title">Jordbær</div>
+                    <div class="list-text-sub" data-i18n="staffDepartments.strawberryStatus">
+                      2 av 3 tilstede
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="list-arrow" aria-hidden="true">→</div>
-            </a>
+                <div class="list-arrow" aria-hidden="true">→</div>
+              </a>
 
             <a href="staff_children.html" class="list-card">
-              <div class="list-left">
-                <div class="list-icon dep-yellow" aria-hidden="true">🏡</div>
-                <div>
-                  <div class="list-text-title">Solstrålen</div>
-                  <div class="list-text-sub">2 av 4 tilstede</div>
+                <div class="list-left">
+                  <div class="list-icon dep-yellow" aria-hidden="true">🏡</div>
+                  <div>
+                    <div class="list-text-title">Solstrålen</div>
+                    <div class="list-text-sub" data-i18n="staffDepartments.sunStatus">
+                      2 av 4 tilstede
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="list-arrow" aria-hidden="true">→</div>
-            </a>
-          </div>
+                <div class="list-arrow" aria-hidden="true">→</div>
+              </a>
+            </div>
         </main>
       </div>
     </div>

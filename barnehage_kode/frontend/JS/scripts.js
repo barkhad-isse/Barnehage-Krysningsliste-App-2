@@ -3,6 +3,301 @@
    Her er bare demo-funksjonalitet (ingen ekte backend).
 */
 
+const LANGUAGE_STORAGE_KEY = "appLanguage";
+
+const translations = {
+  no: {
+    "landing.title": "Barnehage Kryssliste – Hvem er du?",
+    "landing.heading": "Barnehage Kryssliste",
+    "landing.subheading": "Hvem er du?",
+    "landing.staffTitle": "Ansatt",
+    "landing.staffSubtitle": "Se alle avdelinger og barn",
+    "landing.parentTitle": "Forelder",
+    "landing.parentSubtitle": "Se ditt barn",
+
+    "parentLogin.title": "Innlogging for forelder",
+    "parentLogin.heading": "Innlogging for forelder",
+    "parentLogin.subheading": "Logg inn for å fortsette",
+    "parentLogin.emailLabel": "E-post",
+    "parentLogin.emailPlaceholder": "din@barnehage.no",
+    "parentLogin.passwordLabel": "Passord",
+    "parentLogin.passwordPlaceholder": "********",
+    "parentLogin.submit": "Logg inn",
+
+    "staffLogin.title": "Innlogging for ansatt",
+    "staffLogin.heading": "Innlogging for ansatt",
+    "staffLogin.subheading": "Logg inn for å fortsette",
+    "staffLogin.emailLabel": "E-post",
+    "staffLogin.emailPlaceholder": "din@barnehage.no",
+    "staffLogin.passwordLabel": "Passord",
+    "staffLogin.passwordPlaceholder": "********",
+    "staffLogin.submit": "Logg inn",
+
+    "parentDashboard.title": "Mitt barn",
+    "parentDashboard.subtitle": "Registrer inn- og utkryssing",
+    "parentDashboard.status.notArrived": "Ikke kommet",
+    "parentDashboard.checkIn": "Kryss inn",
+    "parentDashboard.messageTitle": "Send beskjed til barnehagen",
+    "parentDashboard.messagePlaceholder":
+      "F.eks. 'Emma har vondt i halsen i dag'...",
+    "parentDashboard.sendMessage": "Send melding",
+    "parentDashboard.nav.child": "Mitt barn",
+
+    "statusConfirm.pageTitle": "Status registrert",
+    "statusConfirm.heading": "Status registrert",
+    "statusConfirm.registeredTitle": "Registrert!",
+    "statusConfirm.text": "Statusen er oppdatert",
+    "statusConfirm.parentBack": "Tilbake",
+    "statusConfirm.staffBack": "Tilbake til liste",
+
+    "staffDepartments.title": "Avdelinger",
+    "staffDepartments.subtitle": "Velg en avdeling",
+    "staffDepartments.blueberryStatus": "2 av 5 tilstede",
+    "staffDepartments.strawberryStatus": "2 av 3 tilstede",
+    "staffDepartments.sunStatus": "2 av 4 tilstede",
+
+    "staffChildren.pageTitle": "Blåbær – barn",
+    "staffChildren.back": "Tilbake",
+    "staffChildren.backLabel": "Tilbake til avdelinger",
+    "staffChildren.title": "Blåbær",
+    "staffChildren.subtitle": "2 av 5 tilstede",
+    "staffChildren.childStatus.checkedOut": "Hentet",
+    "staffChildren.childStatus.notArrived": "Ikke kommet",
+    "staffChildren.childStatus.present": "Tilstede",
+    "staffChildren.childTime.emma": "Levert: 08:15 • Hentet: 15:13",
+    "staffChildren.childTime.noah": "Levert: –",
+    "staffChildren.childTime.olivia": "Levert: 07:45",
+    "staffChildren.details": "Detaljer →",
+
+    "staffChildDetails.pageTitle": "Detaljer – Emma Hansen",
+    "staffChildDetails.back": "Tilbake",
+    "staffChildDetails.backLabel": "Tilbake til barneliste",
+    "staffChildDetails.title": "Detaljer",
+    "staffChildDetails.subtitle": "Blåbær • 2 av 5 tilstede",
+    "staffChildDetails.childName": "Emma Hansen",
+    "staffChildDetails.childInfoHeading": "Barneinformasjon",
+    "staffChildDetails.birthdate": "🎂 Fødselsdato",
+    "staffChildDetails.allergies": "⚠️ Allergier",
+    "staffChildDetails.delivered": "⏰ Levert",
+    "staffChildDetails.pickedUp": "🏁 Hentet",
+    "staffChildDetails.contactHeading": "Kontaktinformasjon",
+    "staffChildDetails.parent1": "Forelder 1: Anne Hansen",
+    "staffChildDetails.parent2": "Forelder 2: Per Hansen",
+    "staffChildDetails.statusHeading": "Status",
+    "staffChildDetails.status.present": "Tilstede",
+    "staffChildDetails.status.later": "Kommer senere",
+    "staffChildDetails.status.pickedUp": "Hentet",
+    "staffChildDetails.notesHeading": "Notater fra personalet",
+    "staffChildDetails.save": "Lagre",
+    "staffChildDetails.notesPlaceholder": "Legg til notater her...",
+    "staffChildDetails.departmentNav": "Avdelinger",
+
+    "common.logout": "Logg ut",
+    "common.settings": "Innstillinger",
+    "common.back": "Tilbake",
+    "common.settingsTitle": "Innstillinger",
+    "common.languageLabel": "Språk",
+
+    "settings.intro": "Velg språk for appen.",
+    "settings.norwegian": "Norsk",
+    "settings.english": "English",
+    "settings.languageActiveLabel": "Valgt språk:",
+    "settings.back": "Tilbake til forrige side",
+
+    "alerts.notesEmpty": "Skriv inn et notat før du lagrer (demo).",
+    "alerts.notesSaved": "Notat lagret (demo – ikke lagret i database ennå).",
+    "alerts.messageEmpty": "Skriv inn en melding før du sender (demo).",
+    "alerts.messageSent": "Melding sendt til barnehagen (demo).",
+
+    "language.name.no": "Norsk",
+    "language.name.en": "English",
+  },
+  en: {
+    "landing.title": "Daycare Check-in – Who are you?",
+    "landing.heading": "Daycare Check-in",
+    "landing.subheading": "Who are you?",
+    "landing.staffTitle": "Staff",
+    "landing.staffSubtitle": "See all departments and children",
+    "landing.parentTitle": "Parent",
+    "landing.parentSubtitle": "See your child",
+
+    "parentLogin.title": "Parent login",
+    "parentLogin.heading": "Parent login",
+    "parentLogin.subheading": "Sign in to continue",
+    "parentLogin.emailLabel": "Email",
+    "parentLogin.emailPlaceholder": "you@daycare.no",
+    "parentLogin.passwordLabel": "Password",
+    "parentLogin.passwordPlaceholder": "********",
+    "parentLogin.submit": "Log in",
+
+    "staffLogin.title": "Staff login",
+    "staffLogin.heading": "Staff login",
+    "staffLogin.subheading": "Sign in to continue",
+    "staffLogin.emailLabel": "Email",
+    "staffLogin.emailPlaceholder": "you@daycare.no",
+    "staffLogin.passwordLabel": "Password",
+    "staffLogin.passwordPlaceholder": "********",
+    "staffLogin.submit": "Log in",
+
+    "parentDashboard.title": "My child",
+    "parentDashboard.subtitle": "Register check-in and check-out",
+    "parentDashboard.status.notArrived": "Not arrived",
+    "parentDashboard.checkIn": "Check in",
+    "parentDashboard.messageTitle": "Send a message to the kindergarten",
+    "parentDashboard.messagePlaceholder":
+      "E.g. 'Emma has a sore throat today'...",
+    "parentDashboard.sendMessage": "Send message",
+    "parentDashboard.nav.child": "My child",
+
+    "statusConfirm.pageTitle": "Status recorded",
+    "statusConfirm.heading": "Status recorded",
+    "statusConfirm.registeredTitle": "Recorded!",
+    "statusConfirm.text": "Status has been updated",
+    "statusConfirm.parentBack": "Back",
+    "statusConfirm.staffBack": "Back to list",
+
+    "staffDepartments.title": "Departments",
+    "staffDepartments.subtitle": "Choose a department",
+    "staffDepartments.blueberryStatus": "2 of 5 present",
+    "staffDepartments.strawberryStatus": "2 of 3 present",
+    "staffDepartments.sunStatus": "2 of 4 present",
+
+    "staffChildren.pageTitle": "Blueberry – children",
+    "staffChildren.back": "Back",
+    "staffChildren.backLabel": "Back to departments",
+    "staffChildren.title": "Blueberry",
+    "staffChildren.subtitle": "2 of 5 present",
+    "staffChildren.childStatus.checkedOut": "Checked out",
+    "staffChildren.childStatus.notArrived": "Not arrived",
+    "staffChildren.childStatus.present": "Present",
+    "staffChildren.childTime.emma": "Delivered: 08:15 • Picked up: 15:13",
+    "staffChildren.childTime.noah": "Delivered: –",
+    "staffChildren.childTime.olivia": "Delivered: 07:45",
+    "staffChildren.details": "Details →",
+
+    "staffChildDetails.pageTitle": "Details – Emma Hansen",
+    "staffChildDetails.back": "Back",
+    "staffChildDetails.backLabel": "Back to child list",
+    "staffChildDetails.title": "Details",
+    "staffChildDetails.subtitle": "Blueberry • 2 of 5 present",
+    "staffChildDetails.childName": "Emma Hansen",
+    "staffChildDetails.childInfoHeading": "Child information",
+    "staffChildDetails.birthdate": "🎂 Birthdate",
+    "staffChildDetails.allergies": "⚠️ Allergies",
+    "staffChildDetails.delivered": "⏰ Delivered",
+    "staffChildDetails.pickedUp": "🏁 Picked up",
+    "staffChildDetails.contactHeading": "Contact information",
+    "staffChildDetails.parent1": "Parent 1: Anne Hansen",
+    "staffChildDetails.parent2": "Parent 2: Per Hansen",
+    "staffChildDetails.statusHeading": "Status",
+    "staffChildDetails.status.present": "Present",
+    "staffChildDetails.status.later": "Coming later",
+    "staffChildDetails.status.pickedUp": "Picked up",
+    "staffChildDetails.notesHeading": "Staff notes",
+    "staffChildDetails.save": "Save",
+    "staffChildDetails.notesPlaceholder": "Add notes here...",
+    "staffChildDetails.departmentNav": "Departments",
+
+    "common.logout": "Log out",
+    "common.settings": "Settings",
+    "common.back": "Back",
+    "common.settingsTitle": "Settings",
+    "common.languageLabel": "Language",
+
+    "settings.intro": "Choose the app language.",
+    "settings.norwegian": "Norwegian",
+    "settings.english": "English",
+    "settings.languageActiveLabel": "Selected language:",
+    "settings.back": "Back to previous page",
+
+    "alerts.notesEmpty": "Write a note before saving (demo).",
+    "alerts.notesSaved": "Note saved (demo – not stored in database yet).",
+    "alerts.messageEmpty": "Type a message before sending (demo).",
+    "alerts.messageSent": "Message sent to the kindergarten (demo).",
+
+    "language.name.no": "Norsk",
+    "language.name.en": "English",
+  },
+};
+
+let currentLanguage = loadLanguageFromStorage();
+
+function loadLanguageFromStorage() {
+  const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+  if (stored && translations[stored]) {
+    return stored;
+  }
+  return "no";
+}
+
+function setLanguage(lang) {
+  if (!translations[lang]) return;
+  currentLanguage = lang;
+  localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+  applyTranslations(lang);
+}
+
+function t(key) {
+  const activeLang = translations[currentLanguage] ? currentLanguage : "no";
+  return (
+    translations[activeLang][key] ||
+    translations.no[key] ||
+    key
+  );
+}
+
+function applyTranslations(lang = currentLanguage) {
+  const activeLang = translations[lang] ? lang : "no";
+  document.documentElement.lang = activeLang === "no" ? "no" : "en";
+
+  const elements = document.querySelectorAll("[data-i18n]");
+  elements.forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    const translation = translations[activeLang][key];
+    if (!translation) return;
+    const attr = el.getAttribute("data-i18n-attr");
+    if (attr) {
+      el.setAttribute(attr, translation);
+    } else {
+      el.textContent = translation;
+    }
+  });
+
+  updateLanguageUI();
+}
+
+function updateLanguageUI() {
+  document
+    .querySelectorAll("[data-language-option]")
+    .forEach((btn) =>
+      btn.classList.toggle(
+        "language-active",
+        btn.getAttribute("data-language-option") === currentLanguage
+      )
+    );
+
+  const activeValue = document.getElementById("language-active-value");
+  if (activeValue) {
+    activeValue.textContent =
+      translations[currentLanguage][`language.name.${currentLanguage}`] ||
+      currentLanguage;
+  }
+}
+
+function initLanguageControls() {
+  const languageButtons = document.querySelectorAll("[data-language-option]");
+  if (!languageButtons.length) return;
+
+  languageButtons.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const lang = btn.getAttribute("data-language-option");
+      setLanguage(lang);
+    })
+  );
+
+  updateLanguageUI();
+}
+
 /**
  * Gjør en gruppe knapper til "status-knapper" der kun én kan være aktiv.
  * Bruk:
@@ -58,10 +353,10 @@ function initSaveNotes() {
   saveBtn.addEventListener("click", () => {
     const text = notesField.value.trim();
     if (!text) {
-      alert("Skriv inn et notat før du lagrer (demo).");
+      alert(t("alerts.notesEmpty"));
       return;
     }
-    alert("Notat lagret (demo – ikke lagret i database ennå).");
+    alert(t("alerts.notesSaved"));
     // Her kan dere senere sende notatet til Python-backend
   });
 }
@@ -78,10 +373,10 @@ function initParentMessage() {
   sendBtn.addEventListener("click", () => {
     const text = msgField.value.trim();
     if (!text) {
-      alert("Skriv inn en melding før du sender (demo).");
+      alert(t("alerts.messageEmpty"));
       return;
     }
-    alert("Melding sendt til barnehagen (demo).");
+    alert(t("alerts.messageSent"));
     msgField.value = "";
   });
 }
@@ -90,6 +385,8 @@ function initParentMessage() {
  * Kall init-funksjoner når DOM er lastet.
  */
 document.addEventListener("DOMContentLoaded", () => {
+  applyTranslations(currentLanguage);
+  initLanguageControls();
   initStatusButtons();
   initSaveNotes();
   initParentMessage();

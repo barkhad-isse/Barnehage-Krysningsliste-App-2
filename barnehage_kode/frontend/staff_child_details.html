@@ -2,7 +2,9 @@
 <html lang="no">
   <head>
     <meta charset="UTF-8" />
-    <title>Detaljer – Emma Hansen</title>
+    <title data-i18n="staffChildDetails.pageTitle">
+      Detaljer – Emma Hansen
+    </title>
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/staff_child_details.css" />
     <script src="js/scripts.js"></script>
@@ -13,18 +15,38 @@
         <header class="card-topbar">
           <div class="card-topbar-row">
             <div>
-              <a class="back-link" href="staff_children.html" aria-label="Tilbake til barneliste">
-                ← <span>Tilbake</span>
+              <a
+                class="back-link"
+                href="staff_children.html"
+                aria-label="Tilbake til barneliste"
+                data-i18n="staffChildDetails.backLabel"
+                data-i18n-attr="aria-label"
+              >
+                ← <span data-i18n="staffChildDetails.back">Tilbake</span>
               </a>
-              <div class="card-topbar-title">Detaljer</div>
-              <div class="card-topbar-subtitle">Blåbær • 2 av 5 tilstede</div>
+              <div class="card-topbar-title" data-i18n="staffChildDetails.title">
+                Detaljer
+              </div>
+              <div class="card-topbar-subtitle" data-i18n="staffChildDetails.subtitle">
+                Blåbær • 2 av 5 tilstede
+              </div>
             </div>
             <div class="topbar-actions">
               <button
                 class="btn btn-secondary btn-small"
                 onclick="window.location.href='landing.html';"
+                data-i18n="common.logout"
               >
                 Logg ut
+              </button>
+              <button
+                class="icon-button"
+                aria-label="Innstillinger"
+                data-i18n="common.settings"
+                data-i18n-attr="aria-label"
+                onclick="window.location.href='settings.html';"
+              >
+                ⚙️
               </button>
             </div>
           </div>
@@ -33,47 +55,59 @@
         <main class="card-body">
           <section class="detail-card mb-16">
             <div class="detail-avatar avatar-gradient" aria-hidden="true">🧒</div>
-            <div class="detail-name">Emma Hansen</div>
+            <div class="detail-name" data-i18n="staffChildDetails.childName">
+              Emma Hansen
+            </div>
           </section>
 
           <section class="detail-card mb-16">
-            <h2 class="detail-title">Barneinformasjon</h2>
+            <h2 class="detail-title" data-i18n="staffChildDetails.childInfoHeading">
+              Barneinformasjon
+            </h2>
             <div class="detail-row">
-              <span>🎂 Fødselsdato</span>
+              <span data-i18n="staffChildDetails.birthdate">🎂 Fødselsdato</span>
               <span>2020-05-15</span>
             </div>
             <div class="detail-row">
-              <span>⚠️ Allergier</span>
+              <span data-i18n="staffChildDetails.allergies">⚠️ Allergier</span>
               <span>Nøtter</span>
             </div>
             <div class="detail-row">
-              <span>⏰ Levert</span>
+              <span data-i18n="staffChildDetails.delivered">⏰ Levert</span>
               <span>08:15</span>
             </div>
             <div class="detail-row">
-              <span>🏁 Hentet</span>
+              <span data-i18n="staffChildDetails.pickedUp">🏁 Hentet</span>
               <span>15:13</span>
             </div>
           </section>
 
           <section class="detail-card mb-16">
-            <h2 class="detail-title">Kontaktinformasjon</h2>
+            <h2 class="detail-title" data-i18n="staffChildDetails.contactHeading">
+              Kontaktinformasjon
+            </h2>
 
             <div class="parent-card parent-card-1 mb-8">
-              <div class="parent-title">Forelder 1: Anne Hansen</div>
+              <div class="parent-title" data-i18n="staffChildDetails.parent1">
+                Forelder 1: Anne Hansen
+              </div>
               <div>📞 +47 123 45 678</div>
               <div>✉️ anne.hansen@email.com</div>
             </div>
 
             <div class="parent-card parent-card-2">
-              <div class="parent-title">Forelder 2: Per Hansen</div>
+              <div class="parent-title" data-i18n="staffChildDetails.parent2">
+                Forelder 2: Per Hansen
+              </div>
               <div>📞 +47 234 56 789</div>
               <div>✉️ per.hansen@email.com</div>
             </div>
           </section>
 
           <section class="detail-card mb-16">
-            <h2 class="detail-title">Status</h2>
+            <h2 class="detail-title" data-i18n="staffChildDetails.statusHeading">
+              Status
+            </h2>
             <div class="status-buttons">
               <button
                 class="btn btn-success btn-block status-btn status-active"
@@ -81,6 +115,7 @@
                 data-status-value="present"
                 data-navigate-to="staff_status_confirm.html"
                 aria-pressed="true"
+                data-i18n="staffChildDetails.status.present"
               >
                 Tilstede
               </button>
@@ -90,6 +125,7 @@
                 data-status-value="coming-later"
                 data-navigate-to="staff_status_confirm.html"
                 aria-pressed="false"
+                data-i18n="staffChildDetails.status.later"
               >
                 Kommer senere
               </button>
@@ -99,6 +135,7 @@
                 data-status-value="picked-up"
                 data-navigate-to="staff_status_confirm.html"
                 aria-pressed="false"
+                data-i18n="staffChildDetails.status.pickedUp"
               >
                 Hentet
               </button>
@@ -107,8 +144,14 @@
 
           <section class="detail-card">
             <div class="notes-header">
-              <h2 class="detail-title">Notater fra personalet</h2>
-              <button id="save-notes-btn" class="btn btn-info btn-small">
+              <h2 class="detail-title" data-i18n="staffChildDetails.notesHeading">
+                Notater fra personalet
+              </h2>
+              <button
+                id="save-notes-btn"
+                class="btn btn-info btn-small"
+                data-i18n="staffChildDetails.save"
+              >
                 Lagre
               </button>
             </div>
@@ -117,6 +160,8 @@
                 id="notes-field"
                 class="textarea"
                 placeholder="Legg til notater her..."
+                data-i18n="staffChildDetails.notesPlaceholder"
+                data-i18n-attr="placeholder"
               ></textarea>
             </div>
           </section>
@@ -124,12 +169,12 @@
           <nav class="bottom-nav">
             <div class="bottom-nav-item bottom-nav-active">
               <div class="bottom-nav-icon" aria-hidden="true">🏡</div>
-              <span>Avdelinger</span>
+              <span data-i18n="staffChildDetails.departmentNav">Avdelinger</span>
             </div>
-            <div class="bottom-nav-item">
+            <a class="bottom-nav-item" href="settings.html">
               <div class="bottom-nav-icon" aria-hidden="true">⚙️</div>
-              <span>Innstillinger</span>
-            </div>
+              <span data-i18n="common.settings">Innstillinger</span>
+            </a>
           </nav>
         </main>
       </div>

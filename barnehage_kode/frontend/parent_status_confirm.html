@@ -2,7 +2,7 @@
 <html lang="no">
   <head>
     <meta charset="UTF-8" />
-    <title>Status registrert</title>
+    <title data-i18n="statusConfirm.pageTitle">Status registrert</title>
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/staff_status_confirm.css" />
     <script src="js/scripts.js"></script>
@@ -12,11 +12,23 @@
       <div class="app-card">
         <header class="card-topbar">
           <div class="card-topbar-row">
-            <div class="card-topbar-title">Status registrert</div>
+            <div class="card-topbar-title" data-i18n="statusConfirm.heading">
+              Status registrert
+            </div>
             <div class="topbar-actions">
+              <button
+                class="icon-button"
+                aria-label="Innstillinger"
+                data-i18n="common.settings"
+                data-i18n-attr="aria-label"
+                onclick="window.location.href='settings.html';"
+              >
+                ⚙️
+              </button>
               <button
                 class="btn btn-secondary btn-small"
                 onclick="window.location.href='landing.html';"
+                data-i18n="common.logout"
               >
                 Logg ut
               </button>
@@ -28,11 +40,16 @@
           <div class="confirm-icon-wrapper">
             <div class="confirm-icon" aria-hidden="true">✅</div>
           </div>
-          <h1 class="confirm-title">Registrert!</h1>
-          <p class="confirm-text">Statusen er oppdatert</p>
+          <h1 class="confirm-title" data-i18n="statusConfirm.registeredTitle">
+            Registrert!
+          </h1>
+          <p class="confirm-text" data-i18n="statusConfirm.text">
+            Statusen er oppdatert
+          </p>
           <button
             class="btn btn-primary btn-block"
             onclick="window.location.href='parent_dashboard.html';"
+            data-i18n="statusConfirm.parentBack"
           >
             Tilbake
           </button>

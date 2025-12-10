@@ -2,7 +2,7 @@
 <html lang="no">
   <head>
     <meta charset="UTF-8" />
-    <title>Innlogging for forelder</title>
+    <title data-i18n="parentLogin.title">Innlogging for forelder</title>
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/parent_login.css" />
     <script src="js/scripts.js"></script>
@@ -12,14 +12,16 @@
       <div class="app-card">
         <header class="card-header">
           <div class="header-icon header-icon-purple" aria-hidden="true">👪</div>
-          <h1>Innlogging for forelder</h1>
-          <p>Logg inn for å fortsette</p>
+          <h1 data-i18n="parentLogin.heading">Innlogging for forelder</h1>
+          <p data-i18n="parentLogin.subheading">Logg inn for å fortsette</p>
         </header>
 
         <main class="card-body">
           <div class="login-form">
             <div class="form-field">
-              <label class="form-label" for="parent-email">E-post</label>
+              <label class="form-label" for="parent-email" data-i18n="parentLogin.emailLabel">
+                E-post
+              </label>
               <div class="input-wrapper">
                 <span aria-hidden="true">✉️</span>
                 <input
@@ -28,12 +30,16 @@
                   type="email"
                   autocomplete="email"
                   placeholder="din@barnehage.no"
+                  data-i18n="parentLogin.emailPlaceholder"
+                  data-i18n-attr="placeholder"
                 />
               </div>
             </div>
 
             <div class="form-field">
-              <label class="form-label" for="parent-password">Passord</label>
+              <label class="form-label" for="parent-password" data-i18n="parentLogin.passwordLabel">
+                Passord
+              </label>
               <div class="input-wrapper">
                 <span aria-hidden="true">🔒</span>
                 <input
@@ -42,6 +48,8 @@
                   type="password"
                   autocomplete="current-password"
                   placeholder="********"
+                  data-i18n="parentLogin.passwordPlaceholder"
+                  data-i18n-attr="placeholder"
                 />
               </div>
             </div>
@@ -50,6 +58,7 @@
               type="button"
               class="btn btn-primary btn-block parent-btn"
               onclick="window.location.href='parent_dashboard.html';"
+              data-i18n="parentLogin.submit"
             >
               Logg inn
             </button>

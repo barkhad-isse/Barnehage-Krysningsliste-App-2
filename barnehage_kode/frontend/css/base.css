@@ -365,6 +365,25 @@ body {
   color: #6b7280;
 }
 
+.icon-button {
+  border: 1px solid #e5e7eb;
+  background: #f8fbff;
+  border-radius: 12px;
+  padding: 6px 9px;
+  cursor: pointer;
+  font-size: 18px;
+  color: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: background 120ms ease, box-shadow 120ms ease;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  background: #eef2ff;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
+  outline: none;
+}
+
 /* Tilbake-lenke */
 .back-link {
   display: inline-flex;

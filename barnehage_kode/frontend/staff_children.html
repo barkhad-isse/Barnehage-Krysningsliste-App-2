@@ -2,7 +2,7 @@
 <html lang="no">
   <head>
     <meta charset="UTF-8" />
-    <title>Blåbær – barn</title>
+    <title data-i18n="staffChildren.pageTitle">Blåbær – barn</title>
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/staff_children.css" />
     <script src="js/scripts.js"></script>
@@ -13,18 +13,38 @@
         <header class="card-topbar">
           <div class="card-topbar-row">
             <div>
-              <a class="back-link" href="staff_departments.html" aria-label="Tilbake til avdelinger">
-                ← <span>Tilbake</span>
+              <a
+                class="back-link"
+                href="staff_departments.html"
+                aria-label="Tilbake til avdelinger"
+                data-i18n="staffChildren.backLabel"
+                data-i18n-attr="aria-label"
+              >
+                ← <span data-i18n="staffChildren.back">Tilbake</span>
               </a>
-              <div class="card-topbar-title">Blåbær</div>
-              <div class="card-topbar-subtitle">2 av 5 tilstede</div>
+              <div class="card-topbar-title" data-i18n="staffChildren.title">
+                Blåbær
+              </div>
+              <div class="card-topbar-subtitle" data-i18n="staffChildren.subtitle">
+                2 av 5 tilstede
+              </div>
             </div>
             <div class="topbar-actions">
               <button
                 class="btn btn-secondary btn-small"
                 onclick="window.location.href='landing.html';"
+                data-i18n="common.logout"
               >
                 Logg ut
+              </button>
+              <button
+                class="icon-button"
+                aria-label="Innstillinger"
+                data-i18n="common.settings"
+                data-i18n-attr="aria-label"
+                onclick="window.location.href='settings.html';"
+              >
+                ⚙️
               </button>
             </div>
           </div>
@@ -37,13 +57,18 @@
                 <div class="child-avatar avatar-purple">E</div>
                 <div>
                   <div class="child-name">Emma Hansen</div>
-                  <div class="badge badge-neutral">Hentet</div>
-                  <div class="child-time">Levert: 08:15 • Hentet: 15:13</div>
+                  <div class="badge badge-neutral" data-i18n="staffChildren.childStatus.checkedOut">
+                    Hentet
+                  </div>
+                  <div class="child-time" data-i18n="staffChildren.childTime.emma">
+                    Levert: 08:15 • Hentet: 15:13
+                  </div>
                 </div>
               </div>
               <button
                 class="btn btn-info btn-block"
                 onclick="window.location.href='staff_child_details.html';"
+                data-i18n="staffChildren.details"
               >
                 Detaljer →
               </button>
@@ -54,13 +79,16 @@
                 <div class="child-avatar avatar-blue">N</div>
                 <div>
                   <div class="child-name">Noah Andersen</div>
-                  <div class="child-status-pill">Ikke kommet</div>
-                  <div class="child-time">Levert: –</div>
+                  <div class="child-status-pill" data-i18n="staffChildren.childStatus.notArrived">
+                    Ikke kommet
+                  </div>
+                  <div class="child-time" data-i18n="staffChildren.childTime.noah">Levert: –</div>
                 </div>
               </div>
               <button
                 class="btn btn-info btn-block"
                 onclick="window.location.href='staff_child_details.html';"
+                data-i18n="staffChildren.details"
               >
                 Detaljer →
               </button>
@@ -73,14 +101,17 @@
                   <div class="child-name">Olivia Berg</div>
                   <div class="badge">
                     <span class="badge-dot"></span>
-                    <span>Tilstede</span>
+                    <span data-i18n="staffChildren.childStatus.present">Tilstede</span>
                   </div>
-                  <div class="child-time">Levert: 07:45</div>
+                  <div class="child-time" data-i18n="staffChildren.childTime.olivia">
+                    Levert: 07:45
+                  </div>
                 </div>
               </div>
               <button
                 class="btn btn-info btn-block"
                 onclick="window.location.href='staff_child_details.html';"
+                data-i18n="staffChildren.details"
               >
                 Detaljer →
               </button>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title data-i18n="common.settingsTitle">Innstillinger</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/settings.css" />
+    <script src="js/scripts.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="app-card">
+        <header class="card-topbar">
+          <div class="card-topbar-row">
+            <div>
+              <div class="card-topbar-title" data-i18n="common.settingsTitle">
+                Innstillinger
+              </div>
+              <div class="card-topbar-subtitle" data-i18n="settings.intro">
+                Velg språk for appen.
+              </div>
+            </div>
+            <div class="topbar-actions">
+              <button
+                class="btn btn-secondary btn-small"
+                onclick="window.history.back();"
+                data-i18n="common.back"
+              >
+                Tilbake
+              </button>
+              <button
+                class="btn btn-secondary btn-small"
+                onclick="window.location.href='landing.html';"
+                data-i18n="common.logout"
+              >
+                Logg ut
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main class="card-body">
+          <section class="detail-card">
+            <div class="settings-section">
+              <div>
+                <div class="settings-label" data-i18n="common.languageLabel">
+                  Språk
+                </div>
+                <div class="settings-hint" data-i18n="settings.intro">
+                  Velg språk for appen.
+                </div>
+              </div>
+
+              <div class="language-options">
+                <button
+                  type="button"
+                  class="language-option"
+                  data-language-option="no"
+                  data-i18n="settings.norwegian"
+                >
+                  Norsk
+                </button>
+                <button
+                  type="button"
+                  class="language-option"
+                  data-language-option="en"
+                  data-i18n="settings.english"
+                >
+                  English
+                </button>
+              </div>
+
+              <div class="language-current">
+                <span data-i18n="settings.languageActiveLabel">
+                  Valgt språk:
+                </span>
+                <strong id="language-active-value">Norsk</strong>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

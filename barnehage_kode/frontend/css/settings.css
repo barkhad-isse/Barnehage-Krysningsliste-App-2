@@ -1,0 +1,58 @@
+/* settings.css
+   Lett stil for innstillingene (språkvalg).
+*/
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-label {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.settings-hint {
+  color: var(--text-sub);
+  font-size: 14px;
+}
+
+.language-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.language-option {
+  border: 1px solid #dfe6f2;
+  background: #f7f9ff;
+  color: var(--text-main);
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 140ms ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.language-option:hover,
+.language-option:focus-visible {
+  border-color: #c4d0e6;
+  background: #eef2ff;
+  outline: none;
+}
+
+.language-option.language-active {
+  background: #e8f1ff;
+  border-color: #b8ccf5;
+  box-shadow: 0 0 0 2px rgba(27, 86, 255, 0.12);
+}
+
+.language-current {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-sub);
+}
