@@ -10,7 +10,6 @@
   <body>
     <div class="app-shell">
       <div class="app-card">
-        <!-- Topbar med tilbake -->
         <header class="card-topbar">
           <div class="card-topbar-row">
             <div>
@@ -18,7 +17,7 @@
                 ← <span>Tilbake</span>
               </a>
               <div class="card-topbar-title">Detaljer</div>
-              <div class="card-topbar-subtitle">Blåbær · 2 av 5 tilstede</div>
+              <div class="card-topbar-subtitle">Blåbær • 2 av 5 tilstede</div>
             </div>
             <div class="topbar-actions">
               <button
@@ -32,18 +31,15 @@
         </header>
 
         <main class="card-body">
-
-          <!-- Barnets "profil"-kort -->
           <section class="detail-card mb-16">
-            <div class="detail-avatar avatar-gradient" aria-hidden="true">👤</div>
+            <div class="detail-avatar avatar-gradient" aria-hidden="true">🧒</div>
             <div class="detail-name">Emma Hansen</div>
           </section>
 
-          <!-- Barneinformasjon -->
           <section class="detail-card mb-16">
             <h2 class="detail-title">Barneinformasjon</h2>
             <div class="detail-row">
-              <span>📅 Fødselsdato</span>
+              <span>🎂 Fødselsdato</span>
               <span>2020-05-15</span>
             </div>
             <div class="detail-row">
@@ -51,16 +47,15 @@
               <span>Nøtter</span>
             </div>
             <div class="detail-row">
-              <span>🟢 Levert</span>
+              <span>⏰ Levert</span>
               <span>08:15</span>
             </div>
             <div class="detail-row">
-              <span>🔵 Hentet</span>
+              <span>🏁 Hentet</span>
               <span>15:13</span>
             </div>
           </section>
 
-          <!-- Kontaktinformasjon -->
           <section class="detail-card mb-16">
             <h2 class="detail-title">Kontaktinformasjon</h2>
 
@@ -77,7 +72,6 @@
             </div>
           </section>
 
-          <!-- Status-knapper -->
           <section class="detail-card mb-16">
             <h2 class="detail-title">Status</h2>
             <div class="status-buttons">
@@ -86,6 +80,7 @@
                 data-status-group="emma-status"
                 data-status-value="present"
                 data-navigate-to="staff_status_confirm.html"
+                aria-pressed="true"
               >
                 Tilstede
               </button>
@@ -94,6 +89,7 @@
                 data-status-group="emma-status"
                 data-status-value="coming-later"
                 data-navigate-to="staff_status_confirm.html"
+                aria-pressed="false"
               >
                 Kommer senere
               </button>
@@ -102,13 +98,13 @@
                 data-status-group="emma-status"
                 data-status-value="picked-up"
                 data-navigate-to="staff_status_confirm.html"
+                aria-pressed="false"
               >
                 Hentet
               </button>
             </div>
           </section>
 
-          <!-- Notater -->
           <section class="detail-card">
             <div class="notes-header">
               <h2 class="detail-title">Notater fra personalet</h2>
@@ -125,10 +121,9 @@
             </div>
           </section>
 
-          <!-- Bunnnavigasjon for ansatte -->
           <nav class="bottom-nav">
             <div class="bottom-nav-item bottom-nav-active">
-              <div class="bottom-nav-icon" aria-hidden="true">👥</div>
+              <div class="bottom-nav-icon" aria-hidden="true">🏡</div>
               <span>Avdelinger</span>
             </div>
             <div class="bottom-nav-item">

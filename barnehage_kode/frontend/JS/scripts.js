@@ -14,6 +14,11 @@ function initStatusButtons() {
   if (!buttons.length) return;
 
   buttons.forEach((btn) => {
+    btn.setAttribute(
+      "aria-pressed",
+      btn.classList.contains("status-active") ? "true" : "false"
+    );
+
     btn.addEventListener("click", () => {
       const group = btn.getAttribute("data-status-group");
       const value = btn.getAttribute("data-status-value");
@@ -22,11 +27,13 @@ function initStatusButtons() {
       buttons.forEach((b) => {
         if (b.getAttribute("data-status-group") === group) {
           b.classList.remove("status-active");
+          b.setAttribute("aria-pressed", "false");
         }
       });
 
       // Sett aktiv på den vi klikket
       btn.classList.add("status-active");
+      btn.setAttribute("aria-pressed", "true");
 
       // Forberedt for backend: her kunne vi sendt value til API
       console.log("Status valgt:", group, value);

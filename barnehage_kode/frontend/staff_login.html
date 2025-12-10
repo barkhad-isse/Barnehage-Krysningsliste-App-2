@@ -11,12 +11,11 @@
     <div class="app-shell">
       <div class="app-card">
         <header class="card-header">
-          <div class="header-icon header-icon-blue" aria-hidden="true">👥</div>
+          <div class="header-icon header-icon-blue" aria-hidden="true">🧑‍🏫</div>
           <h1>Innlogging for ansatt</h1>
           <p>Logg inn for å fortsette</p>
         </header>
 
-      
         <main class="card-body">
           <div class="login-form">
             <div class="form-field">
@@ -26,7 +25,8 @@
                 <input
                   id="staff-email"
                   class="input"
-                  type="text"
+                  type="email"
+                  autocomplete="email"
                   placeholder="din@barnehage.no"
                 />
               </div>
@@ -40,12 +40,12 @@
                   id="staff-password"
                   class="input"
                   type="password"
+                  autocomplete="current-password"
                   placeholder="********"
                 />
               </div>
             </div>
 
-            
             <button
               type="button"
               class="btn btn-primary btn-block"

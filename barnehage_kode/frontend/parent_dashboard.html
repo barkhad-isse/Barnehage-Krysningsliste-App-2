@@ -10,7 +10,6 @@
   <body>
     <div class="app-shell">
       <div class="app-card">
-        <!-- Topbar -->
         <header class="card-topbar">
           <div class="card-topbar-row">
             <div>
@@ -32,11 +31,10 @@
         </header>
 
         <main class="card-body">
-          <!-- Barnets kort -->
           <section class="detail-card mb-16">
-            <div class="parent-avatar avatar-gradient" aria-hidden="true">👤</div>
+            <div class="parent-avatar avatar-gradient" aria-hidden="true">🧒</div>
             <div class="parent-child-name">Emma Hansen</div>
-            <div class="parent-status-pill">
+            <div class="parent-status-pill" role="status" aria-live="polite">
               <span class="status-dot"></span>
               <span>Ikke kommet</span>
             </div>
@@ -46,12 +44,12 @@
               data-status-group="parent-status"
               data-status-value="kryss-inn"
               data-navigate-to="parent_status_confirm.html"
+              aria-pressed="false"
             >
               Kryss inn
             </button>
           </section>
 
-          <!-- Send beskjed til barnehagen -->
           <section class="detail-card">
             <h2 class="detail-title">Send beskjed til barnehagen</h2>
             <div class="textarea-wrapper">
@@ -69,10 +67,9 @@
             </button>
           </section>
 
-          <!-- Bunnnav -->
           <nav class="bottom-nav">
             <div class="bottom-nav-item bottom-nav-active">
-              <div class="bottom-nav-icon" aria-hidden="true">👤</div>
+              <div class="bottom-nav-icon" aria-hidden="true">🧒</div>
               <span>Mitt barn</span>
             </div>
             <div class="bottom-nav-item">

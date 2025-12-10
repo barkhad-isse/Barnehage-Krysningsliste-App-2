@@ -10,17 +10,14 @@
   <body>
     <div class="app-shell">
       <div class="app-card">
-        <!-- Topp med ikon -->
         <header class="card-header">
-          <div class="header-icon header-icon-purple" aria-hidden="true">👤</div>
+          <div class="header-icon header-icon-purple" aria-hidden="true">👪</div>
           <h1>Innlogging for forelder</h1>
           <p>Logg inn for å fortsette</p>
         </header>
 
-        <!-- Login-skjema (demo) -->
         <main class="card-body">
           <div class="login-form">
-            <!-- E-post -->
             <div class="form-field">
               <label class="form-label" for="parent-email">E-post</label>
               <div class="input-wrapper">
@@ -28,13 +25,13 @@
                 <input
                   id="parent-email"
                   class="input"
-                  type="text"
+                  type="email"
+                  autocomplete="email"
                   placeholder="din@barnehage.no"
                 />
               </div>
             </div>
 
-            <!-- Passord -->
             <div class="form-field">
               <label class="form-label" for="parent-password">Passord</label>
               <div class="input-wrapper">
@@ -43,12 +40,12 @@
                   id="parent-password"
                   class="input"
                   type="password"
+                  autocomplete="current-password"
                   placeholder="********"
                 />
               </div>
             </div>
 
-            <!-- Knapp som alltid sender deg videre -->
             <button
               type="button"
               class="btn btn-primary btn-block parent-btn"
