@@ -3,8 +3,11 @@
    Her er bare demo-funksjonalitet (ingen ekte backend).
 */
 
+// Nøkkelnavn som brukes i LocalStorage for å lagre språkvalget
 const LANGUAGE_STORAGE_KEY = "appLanguage";
 
+
+// Translations inneholder alle tekstene i appen på norsk og engelsk.
 const translations = {
   no: {
     "landing.title": "Barnehage Kryssliste – Hvem er du?",
@@ -220,8 +223,11 @@ const translations = {
   },
 };
 
+// Lagrer hvilket språk som er valgt
 let currentLanguage = loadLanguageFromStorage();
 
+
+// Funksjon som leser språket valgt fra localStorage, hvis det ikke finnes blir norsk brukt som standard
 function loadLanguageFromStorage() {
   const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
   if (stored && translations[stored]) {
@@ -230,6 +236,8 @@ function loadLanguageFromStorage() {
   return "no";
 }
 
+
+/* Endrer språket i appen og oppdaterer currentLanguage*/
 function setLanguage(lang) {
   if (!translations[lang]) return;
   currentLanguage = lang;
@@ -237,6 +245,9 @@ function setLanguage(lang) {
   applyTranslations(lang);
 }
 
+/* Hjeloefunksjon som slår opp en oversettelse basert på aktivt språk, 
+om teksten ikke finnes på det språket, vil norsk bli brukt i stedet.
+*/ 
 function t(key) {
   const activeLang = translations[currentLanguage] ? currentLanguage : "no";
   return (
@@ -246,7 +257,9 @@ function t(key) {
   );
 }
 
+/* Oversetter siden basert på valgt språk */
 function applyTranslations(lang = currentLanguage) {
+
   const activeLang = translations[lang] ? lang : "no";
   document.documentElement.lang = activeLang === "no" ? "no" : "en";
 
@@ -266,6 +279,8 @@ function applyTranslations(lang = currentLanguage) {
   updateLanguageUI();
 }
 
+
+/* Oppdaterer språkknappene sånn at riktig knapp vises som valgt*/
 function updateLanguageUI() {
   document
     .querySelectorAll("[data-language-option]")
@@ -276,6 +291,7 @@ function updateLanguageUI() {
       )
     );
 
+  /* Oppdaterer tekst som viser hvilket språk som er valgt */
   const activeValue = document.getElementById("language-active-value");
   if (activeValue) {
     activeValue.textContent =
@@ -284,6 +300,7 @@ function updateLanguageUI() {
   }
 }
 
+/* Gjør språkknappene trykkbare, og når knappen trykkes så byttes språket*/
 function initLanguageControls() {
   const languageButtons = document.querySelectorAll("[data-language-option]");
   if (!languageButtons.length) return;
@@ -298,12 +315,8 @@ function initLanguageControls() {
   updateLanguageUI();
 }
 
-/**
- * Gjør en gruppe knapper til "status-knapper" der kun én kan være aktiv.
- * Bruk:
- *  - legg data-status-group på knappene (samme verdi for gruppen)
- *  - legg data-status-value for selve statusen
- */
+/*Sørger for at kun en av knappene kan være aktiv, som f.eks. til "Tilstede", "Kommer senere", "Hentet" 
+*/
 function initStatusButtons() {
   const buttons = document.querySelectorAll("[data-status-group]");
   if (!buttons.length) return;
@@ -341,9 +354,8 @@ function initStatusButtons() {
   });
 }
 
-/**
- * Init enkel "lagre"-knapp for notater (viser bare en alert nå).
- */
+/* Aktiverer en lagre-knapp for notater på ansattsiden,
+ denne funksjonen viser bare en alert av det som ble skrevet*/
 function initSaveNotes() {
   const saveBtn = document.getElementById("save-notes-btn");
   const notesField = document.getElementById("notes-field");
@@ -357,13 +369,12 @@ function initSaveNotes() {
       return;
     }
     alert(t("alerts.notesSaved"));
-    // Her kan dere senere sende notatet til Python-backend
   });
 }
 
-/**
- * Init knapp for å sende melding fra forelder til barnehage.
- */
+/*
+Aktiverer knappen for foreldremelding. Viser også en alert og tømmer feltet.
+*/
 function initParentMessage() {
   const sendBtn = document.getElementById("send-parent-msg");
   const msgField = document.getElementById("parent-msg-field");
@@ -381,9 +392,9 @@ function initParentMessage() {
   });
 }
 
-/**
- * Kall init-funksjoner når DOM er lastet.
- */
+/*
+Når nettsiden blir lastet inn, vil alle funksjonene startes
+*/
 document.addEventListener("DOMContentLoaded", () => {
   applyTranslations(currentLanguage);
   initLanguageControls();
