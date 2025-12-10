@@ -101,7 +101,6 @@ const translations = {
     "settings.intro": "Velg språk for appen.",
     "settings.norwegian": "Norsk",
     "settings.english": "English",
-    "settings.languageActiveLabel": "Valgt språk:",
     "settings.back": "Tilbake til forrige side",
 
     "alerts.notesEmpty": "Skriv inn et notat før du lagrer (demo).",
@@ -207,7 +206,6 @@ const translations = {
     "settings.intro": "Choose the app language.",
     "settings.norwegian": "Norwegian",
     "settings.english": "English",
-    "settings.languageActiveLabel": "Selected language:",
     "settings.back": "Back to previous page",
 
     "alerts.notesEmpty": "Write a note before saving (demo).",
@@ -275,13 +273,6 @@ function updateLanguageUI() {
         btn.getAttribute("data-language-option") === currentLanguage
       )
     );
-
-  const activeValue = document.getElementById("language-active-value");
-  if (activeValue) {
-    activeValue.textContent =
-      translations[currentLanguage][`language.name.${currentLanguage}`] ||
-      currentLanguage;
-  }
 }
 
 function initLanguageControls() {
