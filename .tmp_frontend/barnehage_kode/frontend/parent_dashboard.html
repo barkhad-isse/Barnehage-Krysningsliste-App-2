@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="parentDashboard.title">Mitt barn</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/parent_dashboard.css" />
+    <script src="js/scripts.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="app-card">
+        <header class="card-topbar">
+          <div class="card-topbar-row">
+            <div>
+              <div class="card-topbar-title" data-i18n="parentDashboard.title">
+                Mitt barn
+              </div>
+              <div class="card-topbar-subtitle" data-i18n="parentDashboard.subtitle">
+                Registrer inn- og utkryssing
+              </div>
+            </div>
+            <div class="topbar-actions">
+              <button
+                class="icon-button"
+                aria-label="Innstillinger"
+                data-i18n="common.settings"
+                data-i18n-attr="aria-label"
+                onclick="window.location.href='settings.html';"
+              >
+                ⚙️
+              </button>
+              <button
+                class="btn btn-secondary btn-small"
+                onclick="window.location.href='landing.html';"
+                data-i18n="common.logout"
+              >
+                Logg ut
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main class="card-body">
+          <section class="detail-card mb-16">
+            <div class="parent-avatar avatar-gradient" aria-hidden="true">🧒</div>
+            <div class="parent-child-name">Emma Hansen</div>
+            <div class="parent-status-pill" role="status" aria-live="polite">
+              <span class="status-dot"></span>
+              <span data-i18n="parentDashboard.status.notArrived">
+                Ikke kommet
+              </span>
+            </div>
+
+            <button
+              class="btn btn-success btn-block mb-8"
+              data-status-group="parent-status"
+              data-status-value="kryss-inn"
+              data-navigate-to="parent_status_confirm.html"
+              aria-pressed="false"
+              data-i18n="parentDashboard.checkIn"
+            >
+              Kryss inn
+            </button>
+          </section>
+
+          <section class="detail-card">
+            <h2 class="detail-title" data-i18n="parentDashboard.messageTitle">
+              Send beskjed til barnehagen
+            </h2>
+            <div class="textarea-wrapper">
+              <textarea
+                id="parent-msg-field"
+                class="textarea"
+                placeholder="F.eks. 'Emma har vondt i halsen i dag'..."
+                data-i18n="parentDashboard.messagePlaceholder"
+                data-i18n-attr="placeholder"
+              ></textarea>
+            </div>
+            <button
+              id="send-parent-msg"
+              class="btn btn-secondary btn-block send-btn"
+              data-i18n="parentDashboard.sendMessage"
+            >
+              Send melding
+            </button>
+          </section>
+
+          <nav class="bottom-nav">
+            <div class="bottom-nav-item bottom-nav-active">
+              <div class="bottom-nav-icon" aria-hidden="true">🧒</div>
+              <span data-i18n="parentDashboard.nav.child">Mitt barn</span>
+            </div>
+            <a class="bottom-nav-item" href="settings.html">
+              <div class="bottom-nav-icon" aria-hidden="true">⚙️</div>
+              <span data-i18n="common.settings">Innstillinger</span>
+            </a>
+          </nav>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

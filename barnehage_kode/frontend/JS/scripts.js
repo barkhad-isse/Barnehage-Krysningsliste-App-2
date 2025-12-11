@@ -523,7 +523,8 @@ function initStaffChildren() {
         btn.addEventListener("click", (e) => {
           e.preventDefault();
           localStorage.setItem("selectedChildId", child.id);
-          window.location.href = "staff_child_details.html";
+          localStorage.setItem("selectedDepartmentId", depId);
+          window.location.href = `staff_child_details.html?child=${child.id}&dep=${depId}`;
         });
 
         listEl.appendChild(card);
@@ -540,8 +541,9 @@ function initChildDetails() {
   const detailName = document.getElementById("detail-name");
   if (!detailName) return;
 
-  const childId = localStorage.getItem("selectedChildId") || "300";
-  const depId = localStorage.getItem("selectedDepartmentId") || "10";
+  const params = new URLSearchParams(window.location.search);
+  const childId = params.get("child") || localStorage.getItem("selectedChildId") || "300";
+  const depId = params.get("dep") || localStorage.getItem("selectedDepartmentId") || "10";
 
   apiGet(`/api/child/${childId}`, { "X-Role": "staff", "X-Department": depId })
     .then((child) => {
