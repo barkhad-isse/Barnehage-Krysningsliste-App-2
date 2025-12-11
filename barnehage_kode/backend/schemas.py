@@ -63,4 +63,17 @@ class Guardian(BaseModel):
   telefon: Optional[str] = None
 
 
+class CommentRequest(BaseModel):
+  child_id: int
+  comment: str
+
+
+class CommentResponse(BaseModel):
+  child_id: int
+  timestamp: str
+  by_role: str
+  actor_id: Optional[int]
+  comment: str
+
+
 ChildDetailResponse.update_forward_refs()

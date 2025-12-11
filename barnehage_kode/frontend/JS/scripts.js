@@ -401,6 +401,8 @@ function initStatusButtons() {
           const statusDot = document.querySelector(".parent-status-pill .status-dot");
           if (statusText) statusText.textContent = "Tilstede";
           if (statusDot) statusDot.classList.add("status-dot-green");
+          // Hent oppdatert status fra API
+          initParentDashboard();
         } else {
           console.log("Status valgt (ingen API-kall):", group, value);
         }
@@ -426,13 +428,26 @@ function initSaveNotes() {
 
   if (!saveBtn || !notesField) return;
 
-  saveBtn.addEventListener("click", () => {
+  saveBtn.addEventListener("click", async () => {
     const text = notesField.value.trim();
     if (!text) {
       alert(t("alerts.notesEmpty"));
       return;
     }
-    alert(t("alerts.notesSaved"));
+    try {
+      const childId = localStorage.getItem("selectedChildId") || "300";
+      const depId = localStorage.getItem("selectedDepartmentId") || "10";
+      const userId = localStorage.getItem("currentUserId") || "1";
+      await apiPost(
+        "/api/comment",
+        { child_id: childId, comment: text },
+        { "X-Role": "staff", "X-Department": depId, "X-User-Id": userId }
+      );
+      alert(t("alerts.notesSaved"));
+    } catch (err) {
+      console.error(err);
+      alert("Kunne ikke lagre notat. Prøv igjen.");
+    }
   });
 }
 
@@ -445,14 +460,31 @@ function initParentMessage() {
 
   if (!sendBtn || !msgField) return;
 
-  sendBtn.addEventListener("click", () => {
+  sendBtn.addEventListener("click", async () => {
     const text = msgField.value.trim();
     if (!text) {
       alert(t("alerts.messageEmpty"));
       return;
     }
-    alert(t("alerts.messageSent"));
-    msgField.value = "";
+    try {
+      const childId = localStorage.getItem("selectedChildId") || "300";
+      const parentId = localStorage.getItem("currentParentId");
+      const userId = localStorage.getItem("currentUserId");
+      if (!parentId || !userId) {
+        alert("Mangler forelder-id/bruker-id. Sett currentParentId og currentUserId i localStorage.");
+        return;
+      }
+      await apiPost(
+        "/api/comment",
+        { child_id: childId, comment: text },
+        { "X-Role": "parent", "X-Parent-Id": parentId, "X-User-Id": userId }
+      );
+      alert(t("alerts.messageSent"));
+      msgField.value = "";
+    } catch (err) {
+      console.error(err);
+      alert("Kunne ikke sende melding. Prøv igjen.");
+    }
   });
 }
 
@@ -487,6 +519,47 @@ async function apiPost(path, body = {}, headers = {}) {
     throw new Error(`API-feil (${res.status}): ${text}`);
   }
   return res.json();
+}
+
+function initParentDashboard() {
+  const nameEl = document.querySelector(".parent-child-name");
+  const statusText = document.querySelector(".parent-status-pill span:last-child");
+  const statusDot = document.querySelector(".parent-status-pill .status-dot");
+  const parentId = localStorage.getItem("currentParentId") || "200"; // fallback demo-ID
+
+  if (!nameEl || !statusText) return;
+
+  apiGet("/api/barn", { "X-Role": "parent", "X-Parent-Id": parentId })
+    .then((children) => {
+      if (!children.length) {
+        nameEl.textContent = "Ingen barn";
+        statusText.textContent = "Ingen data";
+        if (statusDot) statusDot.classList.remove("status-dot-green");
+        return;
+      }
+      const child = children[0];
+      nameEl.textContent = child.name || "Ukjent barn";
+      localStorage.setItem("selectedChildId", child.id);
+      if (child.avdeling_id) {
+        localStorage.setItem("selectedDepartmentId", child.avdeling_id);
+      }
+      if (child.status === "checked_in") {
+        statusText.textContent = "Tilstede";
+        if (statusDot) statusDot.classList.add("status-dot-green");
+      } else if (child.status === "checked_out") {
+        statusText.textContent = "Hentet";
+        if (statusDot) statusDot.classList.remove("status-dot-green");
+      } else {
+        statusText.textContent = "Ikke kommet";
+        if (statusDot) statusDot.classList.remove("status-dot-green");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      nameEl.textContent = "Kunne ikke hente barn";
+      statusText.textContent = "Feil";
+      if (statusDot) statusDot.classList.remove("status-dot-green");
+    });
 }
 
 function formatTime(isoString) {
@@ -683,6 +756,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initStatusButtons();
   initSaveNotes();
   initParentMessage();
+  initParentDashboard();
    initStaffDepartments();
    initStaffChildren();
    initChildDetails();

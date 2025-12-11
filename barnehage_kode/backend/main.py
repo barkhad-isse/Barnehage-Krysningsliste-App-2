@@ -71,6 +71,17 @@ def checkout(payload: schemas.CheckoutRequest, ctx: rbac.RequestContext = Depend
   return saved
 
 
+@app.post("/api/comment", response_model=schemas.CommentResponse, status_code=status.HTTP_201_CREATED)
+def add_comment(payload: schemas.CommentRequest, ctx: rbac.RequestContext = Depends(rbac.get_context), session: Session = Depends(get_session)):
+  rbac.assert_can_view_child(ctx, payload.child_id, session)
+  if not ctx.user_id:
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Mangler X-User-Id for logging")
+  if not payload.comment.strip():
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Tom kommentar")
+  saved = db_service.add_comment(session, payload.child_id, ctx.user_id, ctx.role, payload.comment.strip())
+  return saved
+
+
 # Helsecheck
 @app.get("/health")
 def health():
