@@ -327,9 +327,10 @@ function initStatusButtons() {
       btn.classList.contains("status-active") ? "true" : "false"
     );
 
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", async () => {
       const group = btn.getAttribute("data-status-group");
       const value = btn.getAttribute("data-status-value");
+      const detailPage = document.getElementById("detail-name");
 
       // Fjern aktiv klasse fra alle i samme gruppe
       buttons.forEach((b) => {
@@ -343,8 +344,71 @@ function initStatusButtons() {
       btn.classList.add("status-active");
       btn.setAttribute("aria-pressed", "true");
 
-      // Forberedt for backend: her kunne vi sendt value til API
-      console.log("Status valgt:", group, value);
+      // Kall backend for checkin/checkout der det gir mening
+      try {
+        const childId = localStorage.getItem("selectedChildId") || "300";
+        const depId = localStorage.getItem("selectedDepartmentId") || "10";
+        const userId = localStorage.getItem("currentUserId") || "1";
+        const parentId = localStorage.getItem("currentParentId");
+
+        if (value === "present") {
+          await apiPost(
+            "/api/checkin",
+            { child_id: childId },
+            { "X-Role": "staff", "X-Department": depId, "X-User-Id": userId }
+          );
+          if (document.getElementById("children-list")) {
+            initStaffChildren();
+          }
+          if (detailPage) {
+            initChildDetails();
+            window.location.href = `staff_children.html?dep=${depId}`;
+          }
+        } else if (value === "picked-up") {
+          await apiPost(
+            "/api/checkout",
+            { child_id: childId },
+            { "X-Role": "staff", "X-Department": depId, "X-User-Id": userId }
+          );
+          if (document.getElementById("children-list")) {
+            initStaffChildren();
+          }
+          if (detailPage) {
+            initChildDetails();
+            window.location.href = `staff_children.html?dep=${depId}`;
+          }
+        } else if (value === "coming-later") {
+          // Ingen backend-endepunkt; oppdater visning lokalt
+          const statusEl = document.getElementById("detail-status");
+          if (statusEl) statusEl.textContent = "Kommer senere";
+          const statusText = document.querySelector(".parent-status-pill span:last-child");
+          const statusDot = document.querySelector(".parent-status-pill .status-dot");
+          if (statusText) statusText.textContent = "Kommer senere";
+          if (statusDot) statusDot.classList.remove("status-dot-green");
+        } else if (value === "kryss-inn") {
+          // Parent checkin
+          if (!parentId || !userId) {
+            alert("Mangler forelder-id/bruker-id. Sett currentParentId og currentUserId i localStorage.");
+            throw new Error("Missing parent/user id");
+          }
+          await apiPost(
+            "/api/checkin",
+            { child_id: childId },
+            { "X-Role": "parent", "X-Parent-Id": parentId, "X-User-Id": userId }
+          );
+          // Oppdater dashbordstatus umiddelbart
+          const statusText = document.querySelector(".parent-status-pill span:last-child");
+          const statusDot = document.querySelector(".parent-status-pill .status-dot");
+          if (statusText) statusText.textContent = "Tilstede";
+          if (statusDot) statusDot.classList.add("status-dot-green");
+        } else {
+          console.log("Status valgt (ingen API-kall):", group, value);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Kunne ikke oppdatere status. Prøv igjen.");
+        return;
+      }
 
       // Hvis knappen skal lede til bekreftelsesside:
       if (btn.dataset.navigateTo) {
@@ -401,6 +465,22 @@ async function apiGet(path, headers = {}) {
       "Content-Type": "application/json",
       ...headers,
     },
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`API-feil (${res.status}): ${text}`);
+  }
+  return res.json();
+}
+
+async function apiPost(path, body = {}, headers = {}) {
+  const res = await fetch(`${API_BASE}${path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    },
+    body: JSON.stringify(body),
   });
   if (!res.ok) {
     const text = await res.text();
@@ -489,7 +569,7 @@ function initStaffChildren() {
         return;
       }
 
-      const present = children.filter((c) => c.last_checkin && !c.last_checkout).length;
+      const present = children.filter((c) => c.status === "checked_in").length;
       if (subtitleEl) subtitleEl.textContent = `${present} av ${children.length} tilstede`;
 
       listEl.innerHTML = "";
@@ -498,10 +578,15 @@ function initStaffChildren() {
         card.className = "child-card";
 
         const initials = child.name ? child.name.charAt(0).toUpperCase() : "?";
-        const presentFlag = child.last_checkin && !child.last_checkout;
-        const statusBadge = presentFlag
-          ? `<div class="badge"><span class="badge-dot"></span><span>Tilstede</span></div>`
-          : `<div class="child-status-pill">Ikke kommet</div>`;
+        const statusFlag = child.status;
+        let statusBadge;
+        if (statusFlag === "checked_in") {
+          statusBadge = `<div class="badge"><span class="badge-dot"></span><span>Tilstede</span></div>`;
+        } else if (statusFlag === "checked_out") {
+          statusBadge = `<div class="child-status-pill">Hentet</div>`;
+        } else {
+          statusBadge = `<div class="child-status-pill">Ikke kommet</div>`;
+        }
 
         const timeText = child.last_checkin ? `🕒 Levert: ${formatTime(child.last_checkin)}` : "🕒 Levert: –";
 
@@ -549,15 +634,39 @@ function initChildDetails() {
     .then((child) => {
       detailName.textContent = child.name || "Ukjent barn";
 
-      const presentFlag = child.last_checkin && !child.last_checkout;
+      const statusFlag = child.status;
       const statusEl = document.getElementById("detail-status");
-      if (statusEl) statusEl.textContent = presentFlag ? "Tilstede" : "Ikke kommet/ut";
+      if (statusEl) {
+        if (statusFlag === "checked_in") statusEl.textContent = "Tilstede";
+        else if (statusFlag === "checked_out") statusEl.textContent = "Hentet";
+        else statusEl.textContent = "Ikke kommet/ut";
+      }
 
       const timeEl = document.getElementById("detail-time");
       if (timeEl) timeEl.textContent = child.last_checkin ? formatTime(child.last_checkin) : "–";
 
       const birthEl = document.getElementById("detail-birth");
       if (birthEl) birthEl.textContent = child.fodselsdato || "-";
+
+      // Foreldreinfo fra API
+      const guardians = child.guardians || [];
+      const cards = document.querySelectorAll(".parent-card");
+      cards.forEach((card, idx) => {
+        const g = guardians[idx];
+        const titleEl = card.querySelector(".parent-title");
+        const phoneEl = card.querySelector(".parent-phone");
+        const emailEl = card.querySelector(".parent-email");
+        if (!g) {
+          if (titleEl) titleEl.textContent = `Forelder ${idx + 1}`;
+          if (phoneEl) phoneEl.textContent = "";
+          if (emailEl) emailEl.textContent = "";
+          return;
+        }
+        const relasjon = g.relasjon || "Forelder";
+        if (titleEl) titleEl.textContent = `${relasjon}: ${g.name}`;
+        if (phoneEl) phoneEl.textContent = g.telefon ? `📞 ${g.telefon}` : "";
+        if (emailEl) emailEl.textContent = g.email ? `✉️ ${g.email}` : "";
+      });
     })
     .catch((err) => {
       console.error(err);

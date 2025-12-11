@@ -1,8 +1,10 @@
 from typing import List, Optional
 
 from fastapi import Depends, Header, HTTPException, status
+from sqlalchemy.orm import Session
 
-from . import data_service
+from . import db_service
+from .db.connection import get_session
 
 
 class RequestContext:
@@ -39,8 +41,8 @@ def get_context(
   )
 
 
-def assert_can_view_child(ctx: RequestContext, child_id: str) -> None:
-  child = data_service.get_child(child_id)
+def assert_can_view_child(ctx: RequestContext, child_id: str, session: Session) -> None:
+  child = db_service.get_child(session, child_id)
   if not child:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Barn ikke funnet")
 
@@ -48,12 +50,12 @@ def assert_can_view_child(ctx: RequestContext, child_id: str) -> None:
     return
 
   if ctx.role == "staff":
-    if ctx.department_id and child["department_id"] == ctx.department_id:
+    if ctx.department_id and child.get("avdeling_id") == ctx.department_id:
       return
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Ingen tilgang til dette barnet")
 
   if ctx.role == "parent":
-    guardian_ids: List[str] = child.get("guardian_ids", [])
+    guardian_ids: List[int] = child.get("guardian_ids", [])
     if ctx.parent_id and ctx.parent_id in guardian_ids:
       return
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Forelder har ikke tilgang")

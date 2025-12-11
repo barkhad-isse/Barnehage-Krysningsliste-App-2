@@ -30,26 +30,37 @@ class ChildListResponse(Child):
 
 
 class ChildDetailResponse(Child):
-  pass
+  guardian_ids: List[int] = []
+  guardians: List["Guardian"] = []
 
 
 class CheckinRequest(BaseModel):
-  child_id: str
+  child_id: int
 
 
 class CheckoutRequest(BaseModel):
-  child_id: str
+  child_id: int
 
 
 class CheckinResponse(BaseModel):
-  child_id: str
+  child_id: int
   timestamp: str
   by_role: str
-  actor_id: Optional[str]
+  actor_id: Optional[int]
 
 
 class CheckoutResponse(BaseModel):
-  child_id: str
+  child_id: int
   timestamp: str
   by_role: str
-  actor_id: Optional[str]
+  actor_id: Optional[int]
+
+
+class Guardian(BaseModel):
+  id: int
+  name: str
+  relasjon: Optional[str] = None
+  telefon: Optional[str] = None
+
+
+ChildDetailResponse.update_forward_refs()

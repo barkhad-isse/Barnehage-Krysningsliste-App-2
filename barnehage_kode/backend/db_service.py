@@ -35,6 +35,29 @@ def _rows_to_guardian_map(session, child_ids: Sequence[int]) -> Dict[int, List[i
   return guardian_map
 
 
+def _rows_to_guardian_details(session, child_ids: Sequence[int]) -> Dict[int, List[Dict[str, object]]]:
+  if not child_ids:
+    return {}
+  rows = session.execute(
+    text(
+      """
+      SELECT fb.barn_id, f.forelder_id, f.navn, f.etternavn, f.telefon, f.relasjon
+      FROM forelder_barn fb
+      JOIN forelder f ON f.forelder_id = fb.forelder_id
+      WHERE fb.barn_id IN :ids
+      """
+    ).bindparams(bindparam("ids", expanding=True)),
+    {"ids": list(child_ids)},
+  ).all()
+  data: Dict[int, List[Dict[str, object]]] = {}
+  for barn_id, forelder_id, navn, etternavn, telefon, relasjon in rows:
+    full_name = f"{navn} {etternavn}".strip()
+    data.setdefault(barn_id, []).append(
+      {"id": forelder_id, "name": full_name, "relasjon": relasjon, "telefon": telefon}
+    )
+  return data
+
+
 def _rows_to_log_map(session, child_ids: Sequence[int]) -> Dict[int, Dict[str, Optional[str]]]:
   if not child_ids:
     return {}
@@ -159,8 +182,12 @@ def get_child(session, child_id: int | str) -> Optional[Dict[str, object]]:
     return None
 
   guardian_map = _rows_to_guardian_map(session, [cid])
+  guardian_details = _rows_to_guardian_details(session, [cid])
   log_map = _rows_to_log_map(session, [cid])
-  return _serialize_child(row, guardian_map, log_map)
+  child = _serialize_child(row, guardian_map, log_map)
+  child["guardian_ids"] = guardian_map.get(cid, [])
+  child["guardians"] = guardian_details.get(cid, [])
+  return child
 
 
 def add_checkin(session, child_id: int | str, actor_id: Optional[int], by_role: str = "staff") -> Optional[Dict[str, object]]:

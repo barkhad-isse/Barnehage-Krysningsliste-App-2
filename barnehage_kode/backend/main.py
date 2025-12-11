@@ -10,13 +10,7 @@ app = FastAPI(title="Barnehage Kryssliste API", version="0.1.0")
 # Tillat lokal frontend (Live Server) samt default localhost porter.
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=[
-    "http://localhost",
-    "http://localhost:3000",
-    "http://localhost:5500",
-    "http://127.0.0.1",
-    "http://127.0.0.1:5500",
-  ],
+  allow_origins=["*"],
   allow_credentials=True,
   allow_methods=["*"],
   allow_headers=["*"],
@@ -52,7 +46,7 @@ def list_children(ctx: rbac.RequestContext = Depends(rbac.get_context), session:
 
 @app.get("/api/child/{child_id}", response_model=schemas.ChildDetailResponse)
 def get_child(child_id: int, ctx: rbac.RequestContext = Depends(rbac.get_context), session: Session = Depends(get_session)):
-  rbac.assert_can_view_child(ctx, child_id)
+  rbac.assert_can_view_child(ctx, child_id, session)
   child = db_service.get_child(session, child_id)
   if not child:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Barn ikke funnet")
@@ -61,7 +55,7 @@ def get_child(child_id: int, ctx: rbac.RequestContext = Depends(rbac.get_context
 
 @app.post("/api/checkin", response_model=schemas.CheckinResponse, status_code=status.HTTP_201_CREATED)
 def checkin(payload: schemas.CheckinRequest, ctx: rbac.RequestContext = Depends(rbac.get_context), session: Session = Depends(get_session)):
-  rbac.assert_can_view_child(ctx, payload.child_id)
+  rbac.assert_can_view_child(ctx, payload.child_id, session)
   if not ctx.user_id:
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Mangler X-User-Id for logging")
   saved = db_service.add_checkin(session, payload.child_id, ctx.user_id)
@@ -70,7 +64,7 @@ def checkin(payload: schemas.CheckinRequest, ctx: rbac.RequestContext = Depends(
 
 @app.post("/api/checkout", response_model=schemas.CheckoutResponse, status_code=status.HTTP_201_CREATED)
 def checkout(payload: schemas.CheckoutRequest, ctx: rbac.RequestContext = Depends(rbac.get_context), session: Session = Depends(get_session)):
-  rbac.assert_can_view_child(ctx, payload.child_id)
+  rbac.assert_can_view_child(ctx, payload.child_id, session)
   if not ctx.user_id:
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Mangler X-User-Id for logging")
   saved = db_service.add_checkout(session, payload.child_id, ctx.user_id)
