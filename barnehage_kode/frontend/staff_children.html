@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title data-i18n="staffChildren.pageTitle">Blåbær – barn</title>
+    <title>Barn i avdeling</title>
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/staff_children.css" />
-    <script src="js/scripts.js"></script>
+    <script type="module" src="js/main.js"></script>
   </head>
   <body>
     <div class="app-shell">
@@ -14,28 +14,16 @@
         <header class="card-topbar">
           <div class="card-topbar-row">
             <div>
-              <a
-                class="back-link"
-                href="staff_departments.html"
-                aria-label="Tilbake til avdelinger"
-                data-i18n="staffChildren.backLabel"
-                data-i18n-attr="aria-label"
-              >
-                ← <span data-i18n="staffChildren.back">Tilbake</span>
+              <a class="back-link" href="staff_departments.html" aria-label="Tilbake til avdelinger">
+                ← <span>Tilbake</span>
               </a>
-              <div id="department-title" class="card-topbar-title" data-i18n="staffChildren.title">
-                Blåbær
-              </div>
-              <div id="department-subtitle" class="card-topbar-subtitle" data-i18n="staffChildren.subtitle">
-                2 av 5 tilstede
-              </div>
+              <div id="department-title" class="card-topbar-title">Avdeling</div>
+              <div id="department-subtitle" class="card-topbar-subtitle">-</div>
             </div>
             <div class="topbar-actions">
               <button
                 class="icon-button"
                 aria-label="Innstillinger"
-                data-i18n="common.settings"
-                data-i18n-attr="aria-label"
                 onclick="window.location.href='settings.html';"
               >
                 ⚙️
@@ -43,7 +31,6 @@
               <button
                 class="btn btn-secondary btn-small"
                 onclick="window.location.href='landing.html';"
-                data-i18n="common.logout"
               >
                 Logg ut
               </button>
@@ -52,7 +39,9 @@
         </header>
 
         <main class="card-body">
-          <div id="children-list" class="list" aria-live="polite"></div>
+          <div id="children-list" class="list" aria-live="polite">
+            <div class="text-muted">Laster barn...</div>
+          </div>
         </main>
       </div>
     </div>

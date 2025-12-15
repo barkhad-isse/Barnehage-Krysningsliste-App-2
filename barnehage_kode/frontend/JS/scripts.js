@@ -315,8 +315,8 @@ function initLanguageControls() {
   updateLanguageUI();
 }
 
-/*Sørger for at kun en av knappene kan være aktiv, som f.eks. til "Tilstede", "Kommer senere", "Hentet" 
-*/
+//Sørger for at kun en av knappene kan være aktiv, som f.eks. til "Tilstede", "Kommer senere", "Hentet" 
+
 function initStatusButtons() {
   const buttons = document.querySelectorAll("[data-status-group]");
   if (!buttons.length) return;
@@ -346,10 +346,15 @@ function initStatusButtons() {
 
       // Kall backend for checkin/checkout der det gir mening
       try {
-        const childId = localStorage.getItem("selectedChildId") || "300";
-        const depId = localStorage.getItem("selectedDepartmentId") || "10";
-        const userId = localStorage.getItem("currentUserId") || "1";
+        const childId = localStorage.getItem("selectedChildId");
+        const depId = localStorage.getItem("selectedDepartmentId");
+        const userId = localStorage.getItem("currentUserId");
         const parentId = localStorage.getItem("currentParentId");
+
+        if (!childId || !depId || !userId) {
+          alert("Mangler nødvendig ID for å oppdatere status. Sørg for innlogging/valg av avdeling.");
+          throw new Error("Missing IDs for status update");
+        }
 
         if (value === "present") {
           await apiPost(
@@ -378,7 +383,7 @@ function initStatusButtons() {
             window.location.href = `staff_children.html?dep=${depId}`;
           }
         } else if (value === "coming-later") {
-          // Ingen backend-endepunkt; oppdater visning lokalt
+          // Ingen backend-endepunkt: oppdater visning lokalt
           const statusEl = document.getElementById("detail-status");
           if (statusEl) statusEl.textContent = "Kommer senere";
           const statusText = document.querySelector(".parent-status-pill span:last-child");
@@ -435,9 +440,13 @@ function initSaveNotes() {
       return;
     }
     try {
-      const childId = localStorage.getItem("selectedChildId") || "300";
-      const depId = localStorage.getItem("selectedDepartmentId") || "10";
-      const userId = localStorage.getItem("currentUserId") || "1";
+      const childId = localStorage.getItem("selectedChildId");
+      const depId = localStorage.getItem("selectedDepartmentId");
+      const userId = localStorage.getItem("currentUserId");
+      if (!childId || !depId || !userId) {
+        alert("Mangler nødvendig ID for å lagre notat. Sørg for innlogging/valg av avdeling.");
+        throw new Error("Missing IDs for note save");
+      }
       await apiPost(
         "/api/comment",
         { child_id: childId, comment: text },
@@ -451,9 +460,9 @@ function initSaveNotes() {
   });
 }
 
-/*
-Aktiverer knappen for foreldremelding. Viser også en alert og tømmer feltet.
-*/
+
+// Aktiverer knappen for foreldremelding. Viser også en alert og tømmer feltet.
+
 function initParentMessage() {
   const sendBtn = document.getElementById("send-parent-msg");
   const msgField = document.getElementById("parent-msg-field");
@@ -467,11 +476,11 @@ function initParentMessage() {
       return;
     }
     try {
-      const childId = localStorage.getItem("selectedChildId") || "300";
+      const childId = localStorage.getItem("selectedChildId");
       const parentId = localStorage.getItem("currentParentId");
       const userId = localStorage.getItem("currentUserId");
-      if (!parentId || !userId) {
-        alert("Mangler forelder-id/bruker-id. Sett currentParentId og currentUserId i localStorage.");
+      if (!parentId || !userId || !childId) {
+        alert("Mangler forelder-id/bruker-id/barn-id. Logg inn og prøv igjen.");
         return;
       }
       await apiPost(
@@ -488,7 +497,7 @@ function initParentMessage() {
   });
 }
 
-// --- Backend-tilkobling (MySQL API) ---
+//  Backend-tilkobling (MySQL API) 
 const API_BASE = "http://localhost:8000";
 
 async function apiGet(path, headers = {}) {
@@ -525,7 +534,7 @@ function initParentDashboard() {
   const nameEl = document.querySelector(".parent-child-name");
   const statusText = document.querySelector(".parent-status-pill span:last-child");
   const statusDot = document.querySelector(".parent-status-pill .status-dot");
-  const parentId = localStorage.getItem("currentParentId") || "200"; // fallback demo-ID
+  const parentId = localStorage.getItem("currentParentId");
 
   if (!nameEl || !statusText) return;
 
@@ -700,8 +709,13 @@ function initChildDetails() {
   if (!detailName) return;
 
   const params = new URLSearchParams(window.location.search);
-  const childId = params.get("child") || localStorage.getItem("selectedChildId") || "300";
-  const depId = params.get("dep") || localStorage.getItem("selectedDepartmentId") || "10";
+      const childId = params.get("child") || localStorage.getItem("selectedChildId");
+      const depId = params.get("dep") || localStorage.getItem("selectedDepartmentId");
+
+      if (!childId || !depId) {
+        detailName.textContent = "Fant ikke barn";
+        throw new Error("Missing child/department id");
+      }
 
   apiGet(`/api/child/${childId}`, { "X-Role": "staff", "X-Department": depId })
     .then((child) => {
@@ -747,9 +761,9 @@ function initChildDetails() {
     });
 }
 
-/*
-Når nettsiden blir lastet inn, vil alle funksjonene startes
-*/
+
+//Når nettsiden blir lastet inn, vil alle funksjonene startes
+
 document.addEventListener("DOMContentLoaded", () => {
   applyTranslations(currentLanguage);
   initLanguageControls();
